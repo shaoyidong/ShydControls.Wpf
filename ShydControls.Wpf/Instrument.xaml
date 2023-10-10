@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ShydControls.Wpf.Instrument"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShydControls.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200" SizeChanged="Instrument_SizeChanged">
+    <Grid>
+        <Ellipse x:Name="backEllipse" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=PlateBackground}"/>
+        <Canvas x:Name="mainCanvas" Width="{Binding ActualWidth,ElementName=backEllipse}" Height="{Binding ActualHeight,ElementName=backEllipse}" />
+        <Path x:Name="circle" StrokeThickness="2" Stroke="White" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Width="{Binding ActualWidth,ElementName=backEllipse}" Height="{Binding ActualHeight,ElementName=backEllipse}" />
+        <Path x:Name="pointer" StrokeThickness="0" Fill="GreenYellow"  Width="{Binding ActualWidth,ElementName=backEllipse}" Height="{Binding ActualHeight,ElementName=backEllipse}" >
+            <Path.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5" />
+            </Path.RenderTransformOrigin>
+            <Path.RenderTransform>                  
+                <RotateTransform x:Name="rtPointer" Angle="-45" />
+            </Path.RenderTransform>
+        </Path>
+        <Ellipse Width="15" Height="15" Fill="Black" />
+    </Grid>
+</UserControl>

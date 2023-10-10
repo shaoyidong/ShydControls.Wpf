@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="ShydControls.Wpf.IndustrialComponents.DoubleBeamGas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShydControls.Wpf.IndustrialComponents"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="{Binding CapRadius, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
+            <Border Name="border" Margin="3">
+                <Line
+                Name="liquidLine"
+                VerticalAlignment="Center"
+                Opacity="1"
+                Stretch="Fill"
+                Stroke="{Binding LiquidColor, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, FallbackValue=red}"
+                StrokeDashOffset="{Binding Offset,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor},FallbackValue=0}"
+                StrokeDashArray="0,8"
+                StrokeDashCap="Round"
+                StrokeEndLineCap="Round"
+                StrokeStartLineCap="Round"
+                StrokeThickness="{Binding ElementName=border, Path=ActualHeight}"
+                X1="0"
+                X2="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
+                Y1="0"
+                Y2="0" />
+            </Border>          
+        </Border>
+        <Border Grid.Row="1" CornerRadius="{Binding CapRadius, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
+            <Border Name="border2" Margin="3">
+                <Line
+                Name="liquidLine2"
+                VerticalAlignment="Center"
+                Opacity="1"
+                Stretch="Fill"
+                Stroke="{Binding LiquidColor, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, FallbackValue=red}"
+                StrokeDashOffset="{Binding Offset,RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor},FallbackValue=0}"
+                StrokeDashArray="0,8"
+                StrokeDashCap="Round"
+                StrokeEndLineCap="Round"
+                StrokeStartLineCap="Round"
+                StrokeThickness="{Binding ElementName=border, Path=ActualHeight}"
+                X1="0"
+                X2="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
+                Y1="0"
+                Y2="0" />
+            </Border>
+        </Border>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState Name="WEFlowState">
+                    <Storyboard RepeatBehavior="Forever" Timeline.DesiredFrameRate="30">
+                        <DoubleAnimation Storyboard.TargetName="liquidLine" Storyboard.TargetProperty="StrokeDashOffset" From="0" To="8" Duration="0:0:2" />
+                        <DoubleAnimation Storyboard.TargetName="liquidLine2" Storyboard.TargetProperty="StrokeDashOffset" From="-4" To="4" Duration="0:0:2" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState Name="EWFlowState">
+                    <Storyboard RepeatBehavior="Forever" Timeline.DesiredFrameRate="30">
+                        <DoubleAnimation Storyboard.TargetName="liquidLine" Storyboard.TargetProperty="StrokeDashOffset" From="0" To="-8" Duration="0:0:2" />
+                        <DoubleAnimation Storyboard.TargetName="liquidLine2" Storyboard.TargetProperty="StrokeDashOffset" From="4" To="-4" Duration="0:0:2" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup Name="RunStateGroup">
+                <VisualState Name="StopState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>
+                                        Collapsed
+                                    </Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border2" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>
+                                            Collapsed
+                                        </Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState Name="RunState" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+    
+        
+    
+    
+
+</UserControl>

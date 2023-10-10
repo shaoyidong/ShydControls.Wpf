@@ -1,0 +1,352 @@
+﻿<UserControl
+    x:Class="ShydControls.Wpf.IndustrialComponents.MbeGasRise"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:ShydControls.Wpf.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.IndustrialComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="445"
+    d:DesignWidth="387"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Storyboard x:Key="rotationStoryboard" RepeatBehavior="Forever" Timeline.DesiredFrameRate="30" Duration="0:0:1">
+            <DoubleAnimation Storyboard.TargetName="manipulator" Storyboard.TargetProperty="RenderTransform.Children[0].Angle" From="0" To="360" Duration="0:0:1" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Canvas Width="387" Height="445">
+        <Canvas.Background>
+            <ImageBrush ImageSource="pack://application:,,,/ShydControls.Wpf;component/Assets/Images/MBENoManipulator.bmp" Stretch="Fill" />
+        </Canvas.Background>
+        <!--<Ellipse  Width="110" Height="110" Fill="#FF8B7272" RenderTransformOrigin="0.5,0.5" Canvas.Left="147.804" Canvas.Top="84.314"  >
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="0" x:Name="rt"/>
+                    <ScaleTransform ScaleY="0.25"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>-->
+
+        <StackPanel Canvas.Left="154.305" Canvas.Top="128.314">
+            <Border
+                Width="100"
+                Height="100"
+                Panel.ZIndex="2"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="100">
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="0.2" />
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Path
+                    x:Name="manipulator"
+                    Width="100"
+                    Height="100"
+                    Margin="0,-1,0,0"
+                    Data="M 10,50 A 40,40 0 1 0 50 10"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stroke="AliceBlue"
+                    StrokeDashCap="Round"
+                    StrokeThickness="4">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="rt" Angle="0" CenterX="0.5" CenterY="0.5" />
+                            <!--<ScaleTransform ScaleY="0.2" />-->
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Border>
+            <Border
+                Width="100"
+                Height="20"
+                Margin="0,-176,0,0"
+                Panel.ZIndex="0"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="100">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border
+                Width="100"
+                Height="2"
+                Margin="0,-178,0,0"
+                Panel.ZIndex="0"
+                BorderBrush="Black"
+                BorderThickness="1,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </StackPanel>
+        <StackPanel Canvas.Left="193" Canvas.Top="72">
+            <Border
+                Width="20"
+                Height="10"
+                Panel.ZIndex="2"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="100">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border
+                Canvas.Left="100.471"
+                Width="20"
+                Height="60"
+                Margin="0,-5,0,0"
+                Panel.ZIndex="1"
+                BorderBrush="Black"
+                BorderThickness="1,0,1,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border
+                Width="20"
+                Height="10"
+                Margin="0,-5,0,0"
+                Panel.ZIndex="0"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="100">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                        <GradientStop Offset="0" Color="#FF8B7272" />
+                        <GradientStop Offset="0.5" Color="#ccc" />
+                        <GradientStop Offset="1" Color="#FF8B7272" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </StackPanel>
+
+
+        <!--<Viewbox Width="110" Height="110" RenderTransformOrigin="0.5,0.5" Canvas.Left="151.305" Canvas.Top="81.98">
+            <Viewbox.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="0" x:Name="rt"/>
+                    <ScaleTransform ScaleY="0.25"/>
+                </TransformGroup>
+            </Viewbox.RenderTransform>
+
+
+        <Path Data="M605.61792 481.6c110.464-39.808 281.6-67.584 376.192 33.536 92.672 98.944 31.168 350.016-167.232 395.904-186.496 43.136-27.456-356.736-246.912-313.6a108.224 108.224 0 0 1-22.4 15.104c38.4 110.592 62.656 276.416-36.224 369.024s-350.08 31.168-395.968-167.232c-41.344-178.816 325.248-39.424 317.44-220.992a107.648 107.648 0 0 1-30.592-44.8c-110.592 36.288-268.032 55.616-357.504-39.68C-50.44608 409.984 11.18592 159.04 210.03392 113.152c179.2-41.28 40.128 323.648 220.608 317.184a107.584 107.584 0 0 1 46.848-23.04c-37.376-110.784-59.648-273.472 37.824-364.8C614.44992-50.496 865.20192 11.136 911.08992 209.984c43.456 188.48-363.328 24.832-312.256 252.928a106.304 106.304 0 0 1 6.784 18.688z" Fill="Blue">
+            </Path>
+
+        </Viewbox>-->
+        <local:SingleBeamGas
+            x:Name="gas1"
+            Canvas.Left="173.976"
+            Canvas.Top="160.707"
+            Width="185.423"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Red"
+            Visibility="{Binding GasVisibility[0], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="122" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas2"
+            Canvas.Left="177.488"
+            Canvas.Top="166.177"
+            Width="188.854"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            Visibility="{Binding GasVisibility[1], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="116" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas3"
+            Canvas.Left="182.295"
+            Canvas.Top="167.535"
+            Width="199.102"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Blue"
+            Visibility="{Binding GasVisibility[2], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="110" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas4"
+            Canvas.Left="186.765"
+            Canvas.Top="164.592"
+            Width="207.165"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Green"
+            Visibility="{Binding GasVisibility[3], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="104" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas5"
+            Canvas.Left="189.52"
+            Canvas.Top="166.853"
+            Width="210.334"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Cyan"
+            Visibility="{Binding GasVisibility[4], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="98" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas6"
+            Canvas.Left="194.458"
+            Canvas.Top="166.358"
+            Width="211.419"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Purple"
+            Visibility="{Binding GasVisibility[5], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="92" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas12"
+            Canvas.Left="240.312"
+            Canvas.Top="159.788"
+            Width="163.338"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Black"
+            Visibility="{Binding GasVisibility[11], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="60" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas11"
+            Canvas.Left="231.737"
+            Canvas.Top="155.363"
+            Width="183.465"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="DarkRed"
+            Visibility="{Binding GasVisibility[10], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="66" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas10"
+            Canvas.Left="229.055"
+            Canvas.Top="161.2"
+            Width="192.109"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="Gold"
+            Visibility="{Binding GasVisibility[9], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="72" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas9"
+            Canvas.Left="224.624"
+            Canvas.Top="164.595"
+            Width="200.479"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="DarkBlue"
+            Visibility="{Binding GasVisibility[8], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="78" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas8"
+            Canvas.Left="218.146"
+            Canvas.Top="164.818"
+            Width="207.889"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="DarkCyan"
+            Visibility="{Binding GasVisibility[7], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="84" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <local:SingleBeamGas
+            x:Name="gas7"
+            Canvas.Left="205.796"
+            Canvas.Top="166.222"
+            Width="210.891"
+            Height="10"
+            CapRadius="0"
+            Direction="0"
+            LiquidColor="LimeGreen"
+            Visibility="{Binding GasVisibility[6], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:SingleBeamGas.RenderTransform>
+                <RotateTransform Angle="88" />
+            </local:SingleBeamGas.RenderTransform>
+        </local:SingleBeamGas>
+        <VisualStateManager.VisualStateGroups>          
+            <VisualStateGroup Name="RotationStateGroup">
+                <VisualState Name="RotationState">
+                    <Storyboard x:Name="rotationStoryboard" Timeline.DesiredFrameRate="30">
+                        <DoubleAnimation
+                            x:Name="rotationAnimation"
+                            RepeatBehavior="Forever"
+                            Storyboard.TargetName="manipulator"
+                            Storyboard.TargetProperty="RenderTransform.Children[0].Angle"
+                            From="0"
+                            To="360"
+                            Duration="0:0:1" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState Name="StopRotationState" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Canvas>
+
+
+</UserControl>

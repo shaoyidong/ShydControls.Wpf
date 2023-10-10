@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShydControls.Wpf", "ShydControls.Wpf\ShydControls.Wpf.csproj", "{D28A9BF4-2C7D-4942-BCBA-0077A1EC8B1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D28A9BF4-2C7D-4942-BCBA-0077A1EC8B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28A9BF4-2C7D-4942-BCBA-0077A1EC8B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28A9BF4-2C7D-4942-BCBA-0077A1EC8B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28A9BF4-2C7D-4942-BCBA-0077A1EC8B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {098ACC6D-3037-431B-84BD-3F96E09E07E2}
+	EndGlobalSection
+EndGlobal

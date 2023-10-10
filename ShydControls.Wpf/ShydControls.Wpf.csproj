@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net6.0-windows;net481;net48;net472</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	 <LangVersion>latest</LangVersion>
+	 <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	 <Authors>Shyd</Authors>
+	 <Version>1.0.9</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Page Remove="Generic - 副本.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,186 @@
+﻿<UserControl
+    x:Class="ShydControls.Wpf.IndustrialComponents.Valve"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.IndustrialComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="64"
+    d:DesignWidth="64"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Color x:Key="Color1">
+            #FF5B5C5F
+        </Color>
+        <Color x:Key="Color2">
+            #FFECECED
+        </Color>
+        <Color x:Key="Color3">
+            #FFB1B3B6
+        </Color>
+        <Color x:Key="Color4">
+            #FF5B5C5F
+        </Color>
+        <Color x:Key="Color5">
+            #FFCECECE
+        </Color>
+    </UserControl.Resources>
+    <Grid>
+        <Viewbox Stretch="Uniform">
+            <Canvas
+                x:Name="Group_Hand_valve___horizontal"
+                Width="112.5"
+                Height="112.5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                LayoutTransform="Identity"
+                Tag="#00000000,#FF008000,Original,0,None"
+                UseLayoutRounding="False">
+
+                <Canvas
+                    x:Name="Group_Body"
+                    Canvas.Left="18.9"
+                    Canvas.Top="46.525"
+                    Width="74.925"
+                    Height="56.025"
+                    Tag="#00000000,#FF008000,Original,0,None">
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="74.925"
+                        Height="56.025"
+                        Data="M18.9,46.525L93.825,46.525 93.825,102.55 18.9,102.55z"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+                                <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+                                <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+                <Canvas
+                    x:Name="Group_Por2"
+                    Canvas.Left="0"
+                    Canvas.Top="37.075"
+                    Width="18.9"
+                    Height="74.925"
+                    Tag="#00000000,#FF008000,Original,0,None">
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="18.9"
+                        Height="74.925"
+                        Data="M0,112L18.9,112 18.9,37.075 0,37.075z"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+                                <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+                                <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+                <Canvas
+                    x:Name="Group_Port1"
+                    Canvas.Left="93.825"
+                    Canvas.Top="37.075"
+                    Width="18.675"
+                    Height="74.925"
+                    Tag="#00000000,#FF008000,Original,0,None">
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="18.675"
+                        Height="74.925"
+                        Data="M93.825,112L112.5,112 112.5,37.075 93.825,37.075z"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+                                <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+                                <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+                <Canvas
+                    x:Name="Group_Rod"
+                    Canvas.Left="47.025"
+                    Canvas.Top="17.931"
+                    Width="18.675"
+                    Height="37.631"
+                    Tag="#00000000,#FF008000,Original,0,None">
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="18.675"
+                        Height="37.631"
+                        Data="F1M47.025,17.931L47.025,47.043C47.025,51.749,51.206,55.562,56.363,55.562L56.363,55.562C61.52,55.562,65.7,51.749,65.7,47.043L65.7,47.043C65.7,46.823,65.682,46.606,65.664,46.39L65.664,46.39 65.664,17.931z"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+                                <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+                                <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+                <Canvas
+                    x:Name="Group_Handle"
+                    Canvas.Left="18.787"
+                    Canvas.Top="-0.266"
+                    Width="74.925"
+                    Height="18.432"
+                    Tag="#00000000,#FF008000,Original,0,None">
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="4.726"
+                        Width="74.925"
+                        Height="23.706"
+                        Data="F1M18.787,4.45999999999999L18.787,21.435C18.787,25.152,35.559,28.166,56.249,28.166L56.249,28.166C76.939,28.166,93.712,25.152,93.712,21.435L93.712,21.435 93.712,4.45999999999999z"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+                                <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+                                <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+                    <Path
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="74.925"
+                        Height="9.451"
+                        Data="F1M93.7119,4.45950000000001C93.7119,7.06950000000001 76.9399,9.1855 56.2489,9.1855 35.5589,9.1855 18.7869,7.06950000000001 18.7869,4.45950000000001 18.7869,1.85050000000001 35.5589,-0.265499999999994 56.2489,-0.265499999999994 76.9399,-0.265499999999994 93.7119,1.85050000000001 93.7119,4.45950000000001"
+                        Stretch="Fill">
+                        <Path.Fill>
+                            <SolidColorBrush Color="{DynamicResource Color5}" />
+                        </Path.Fill>
+                    </Path>
+                </Canvas>
+                <TextBlock
+                    x:Name="txt"
+                    Canvas.Left="35"
+                    Canvas.Top="29"
+                    FontSize="33"
+                    FontWeight="Black"
+                    Text="S"
+                    Visibility="Collapsed">
+                    <TextBlock.RenderTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </Canvas>
+        </Viewbox>   
+    </Grid>
+</UserControl>
