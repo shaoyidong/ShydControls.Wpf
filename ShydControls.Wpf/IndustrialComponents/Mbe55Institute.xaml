@@ -48,6 +48,10 @@
         <Color x:Key="ColorOff">
             #ffc0c0
         </Color>
+        <!--<SolidColorBrush
+            x:Key="BrushMainShutter"
+            x:Name="BrushMainShutter"
+            Color="{StaticResource ColorOff}" />-->
         <SolidColorBrush x:Key="BurshOn" Color="{StaticResource ColorOn}" />
         <SolidColorBrush x:Key="BurshOff" Color="{StaticResource ColorOff}" />
         <SolidColorBrush x:Key="Brush3" Color="{StaticResource Color3}" />
@@ -56,7 +60,7 @@
                 Storyboard.TargetName="gv11"
                 Storyboard.TargetProperty="Margin"
                 To="0 0 0 38"
-                Duration="0:0:2">
+                Duration="0:0:1.5">
                 <ThicknessAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </ThicknessAnimation.EasingFunction>
@@ -65,14 +69,14 @@
                 Storyboard.TargetName="gv11Bg"
                 Storyboard.TargetProperty="Color"
                 To="{StaticResource ColorOff}"
-                Duration="0:0:2" />
+                Duration="0:0:1.5" />
         </Storyboard>
         <Storyboard x:Key="gv11OnSb" Timeline.DesiredFrameRate="30">
             <ThicknessAnimation
                 Storyboard.TargetName="gv11"
                 Storyboard.TargetProperty="Margin"
                 To="0 0 0 3"
-                Duration="0:0:2">
+                Duration="0:0:1.5">
                 <ThicknessAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </ThicknessAnimation.EasingFunction>
@@ -81,7 +85,7 @@
                 Storyboard.TargetName="gv11Bg"
                 Storyboard.TargetProperty="Color"
                 To="{StaticResource ColorOn}"
-                Duration="0:0:2" />
+                Duration="0:0:1.5" />
         </Storyboard>
         <Storyboard
             x:Key="rotationStoryboard"
@@ -94,6 +98,44 @@
                 From="0"
                 To="360"
                 Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard
+            x:Key="mainShutterOnStoryboard"
+            Timeline.DesiredFrameRate="30"
+            Duration="0:0:1.5">
+            <DoubleAnimation
+                Storyboard.TargetName="canvasMainShutter"
+                Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                To="46"
+                Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ColorAnimation
+                Storyboard.TargetName="mainShutterBg"
+                Storyboard.TargetProperty="Color"
+                To="{StaticResource ColorOn}"
+                Duration="0:0:1.5" />
+        </Storyboard>
+        <Storyboard
+            x:Key="mainShutterOffStoryboard"
+            Timeline.DesiredFrameRate="30"
+            Duration="0:0:1.5">
+            <DoubleAnimation
+                Storyboard.TargetName="canvasMainShutter"
+                Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                To="0"
+                Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ColorAnimation
+                Storyboard.TargetName="mainShutterBg"
+                Storyboard.TargetProperty="Color"
+                To="{StaticResource ColorOff}"
+                Duration="0:0:1.5" />
         </Storyboard>
     </UserControl.Resources>
 
@@ -147,6 +189,7 @@
                     StrokeThickness="0.329915357834785" />
                 <Polygon
                     Panel.ZIndex="2"
+                    d:Fill="{x:Null}"
                     Fill="{StaticResource BrushRadial}"
                     Points="1355.39974560233,336.514339925564 1355.22290819967,333.389184850033 1354.86923339435,330.322994964606 1354.1618837837,327.315770269284 1353.27769677039,324.426475954171 1352.09878075264,321.537181639057 1350.68408153135,318.824782894257 1348.97465330562,316.230314529665 1347.14733347811,313.753776545282 1345.02528464617,311.513099321317 1342.78534421245,309.449317667664 1340.30962057519,307.562431584325 1337.71600533615,305.911406261403 1335.00449849533,304.496241698898 1332.17510005274,303.316937896811 1329.22781000838,302.373494855141 1326.22157416312,301.724877763993 1323.15639251699,301.312121433263 1320.09121087085,301.194191053054 1317.02602922471,301.312121433263 1313.96084757857,301.724877763993 1310.95461173332,302.373494855141 1308.00732168895,303.316937896811 1305.17792324636,304.496241698898 1302.46641640555,305.911406261403 1299.87280116651,307.562431584325 1297.39707752924,309.449317667664 1295.15713709552,311.513099321317 1293.09403406447,313.753776545282 1291.20776843607,316.230314529665 1289.55728601123,318.824782894257 1288.14258678994,321.537181639057 1286.96367077219,324.426475954171 1286.02053795799,327.315770269284 1285.37213414823,330.322994964606 1284.95951354202,333.389184850033 1284.84162194025,336.514339925564 1284.95951354202,339.58052981099 1285.37213414823,342.646719696417 1286.02053795799,345.653944391739 1286.96367077219,348.543238706853 1288.14258678994,351.432533021966 1289.55728601123,354.144931766766 1291.20776843607,356.739400131358 1293.09403406447,359.215938115741 1295.15713709552,361.456615339707 1297.39707752924,363.520396993359 1299.87280116651,365.407283076699 1302.46641640555,367.058308399621 1305.17792324636,368.473472962125 1308.00732168895,369.652776764212 1310.95461173332,370.596219805882 1313.96084757857,371.24483689703 1317.02602922471,371.65759322776 1320.09121087085,371.834488798073 1323.15639251699,371.65759322776 1326.22157416312,371.24483689703 1329.22781000838,370.596219805882 1332.17510005274,369.652776764212 1335.00449849533,368.473472962125 1337.71600533615,367.058308399621 1340.30962057519,365.407283076699 1342.78534421245,363.520396993359 1345.02528464617,361.456615339707 1347.14733347811,359.215938115741 1348.97465330562,356.739400131358 1350.68408153135,354.144931766766 1352.09878075264,351.432533021966 1353.27769677039,348.543238706853 1354.1618837837,345.653944391739 1354.86923339435,342.646719696417 1355.22290819967,339.58052981099"
                     Stroke="#FF212830"
@@ -155,6 +198,66 @@
                     StrokeMiterLimit="1"
                     StrokeStartLineCap="Round"
                     StrokeThickness="0.329915357834785" />
+                <Canvas
+                    x:Name="canvasMainShutter"
+                    Canvas.Left="1292.677"
+                    Canvas.Top="309.029"
+                    Width="110"
+                    Height="55"
+                    Panel.ZIndex="1"
+                    d:Visibility="Visible"
+                    Visibility="Collapsed">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="70" CenterX="27.5" CenterY="27.5" />
+                            <RotateTransform Angle="46" CenterX="55.54565175270484" CenterY="104.55479490444448" />
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Ellipse
+                        Width="55"
+                        Height="55"
+                        HorizontalAlignment="Left"
+                        StrokeDashCap="Triangle">
+                        <Ellipse.Fill>
+                            <SolidColorBrush x:Name="mainShutterBg" Color="{StaticResource ColorOff}" />
+                        </Ellipse.Fill>
+                        <!--<Ellipse.Clip>
+                            <RectangleGeometry Rect="0,0 41.35,55" />
+                        </Ellipse.Clip>-->
+                    </Ellipse>
+                    <Polyline
+                        Width="110"
+                        Height="55"
+                        ClipToBounds="True"
+                        Fill="{Binding ElementName=mainShutterBg, Path=.}"
+                        Points="41.25,3.68 82.51,27.5 41.25,51.32"
+                        StrokeDashCap="Round"
+                        StrokeEndLineCap="Round"
+                        StrokeStartLineCap="Round">
+                        <!--<Polyline.Clip>
+                                <RectangleGeometry Rect="41.25,0 40,55" />
+                            </Polyline.Clip>-->
+                    </Polyline>
+                    <Line
+                        Canvas.Left="79"
+                        Width="30"
+                        Height="55"
+                        HorizontalAlignment="Right"
+                        Stroke="{Binding ElementName=mainShutterBg, Path=.}"
+                        StrokeEndLineCap="Round"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="5"
+                        X1="0"
+                        X2="27"
+                        Y1="27.5"
+                        Y2="27.5" />
+                    <!--<Rectangle
+                            Width="36"
+                            Height="5"
+                            HorizontalAlignment="Right"
+                            Fill="{StaticResource BurshOff}"
+                            />-->
+                </Canvas>
                 <Border
                     Canvas.Left="1284.677"
                     Canvas.Top="301.029"
@@ -180,6 +283,7 @@
                         </Ellipse.RenderTransform>
                     </Ellipse>
                 </Border>
+
 
                 <!--<Path
                     x:Name="manipulatorRt"

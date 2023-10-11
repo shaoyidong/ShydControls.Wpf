@@ -29,6 +29,8 @@ namespace ShydControls.Wpf.IndustrialComponents
         public ObservableCollection<string> CellNames { get; } = new ObservableCollection<string>(new string[12]);
         public ObservableCollection<bool?> GateValveStatus { get; } = new ObservableCollection<bool?>(new bool?[13]);
 
+        
+
         public bool IsRotating
         {
             get { return (bool)GetValue(IsRotatingProperty); }
@@ -57,8 +59,6 @@ namespace ShydControls.Wpf.IndustrialComponents
             }
             //不使用VisualStateManager是因为无法动态控制动画启停及速度
             //VisualStateManager.GoToState(d as MbeGasRise, (bool)e.NewValue ? "RotationState" : "StopRotationState", false);
-
-
         }
 
 
@@ -118,6 +118,48 @@ namespace ShydControls.Wpf.IndustrialComponents
 
         }
 
+
+
+        public bool? MainShutterStatus
+        {
+            get { return (bool?)GetValue(MainShutterStatusProperty); }
+            set { SetValue(MainShutterStatusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MainShutterStatus.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MainShutterStatusProperty =
+            DependencyProperty.Register("MainShutterStatus", typeof(bool?), typeof(Mbe55Institute), new PropertyMetadata(null,new PropertyChangedCallback(OnMainShutterStatusChanged)));
+
+        private static void OnMainShutterStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var mbe55 = d as Mbe55Institute;
+           
+            if (e.NewValue == e.OldValue)
+            {
+                return;
+            }
+            if (e.NewValue == null) 
+            { 
+                mbe55.canvasMainShutter.Visibility = Visibility.Collapsed;
+                return;
+            }
+            else
+            {
+                mbe55.canvasMainShutter.Visibility = Visibility.Visible;
+            }
+            var res = mbe55.canvasMainShutter.Resources["BrushMainShutter"];
+            if ((bool)e.NewValue)
+            {
+                mbe55._mainShutterOffSb.Stop();
+                mbe55._mainShutterOnSb.Begin();
+            }
+            else
+            {
+                mbe55._mainShutterOnSb.Stop();
+                mbe55._mainShutterOffSb.Begin();
+            }
+        }
+
         private Polygon[] _cellShutters;
         private Brush _radialBrush;
         private Brush _onBrush;
@@ -132,15 +174,18 @@ namespace ShydControls.Wpf.IndustrialComponents
         private Storyboard _gv11OffSb;
         private Storyboard _story;
 
+        private Storyboard _mainShutterOnSb;
+        private Storyboard _mainShutterOffSb;
+
         public Mbe55Institute()
         {
             
             InitializeComponent();
-            this.Resources["Color1"] = Colors.Transparent;
-            this.Resources["Color2"] = Colors.Transparent;
-            this.Resources["Color3"] = Colors.Transparent;
-            this.Resources["Color4"] = Colors.Transparent;
-            this.Resources["Color5"] = Colors.Transparent;
+            this.Resources["Color1"] =null;
+            this.Resources["Color2"] = null;
+            this.Resources["Color3"] = null;
+            this.Resources["Color4"] = null;
+            this.Resources["Color5"] = null;
             CellShutterStatus.CollectionChanged += CellShutterStatus_CollectionChanged;
             _cellShutters = new Polygon[12] { cellShutter01, cellShutter02, cellShutter03, cellShutter04, cellShutter05, cellShutter06, cellShutter07, cellShutter08, cellShutter09, cellShutter10, cellShutter11, cellShutter12 };
             _radialBrush = this.Resources["BrushRadial"] as Brush;
@@ -159,7 +204,11 @@ namespace ShydControls.Wpf.IndustrialComponents
 
             _story = this.Resources["rotationStoryboard"] as Storyboard;
 
+            _mainShutterOnSb = this.Resources["mainShutterOnStoryboard"] as Storyboard;
+            _mainShutterOffSb = this.Resources["mainShutterOffStoryboard"] as Storyboard;
+
             this.Loaded += Mbe55Institute_Loaded;
+            
         }
 
         private void Mbe55Institute_Loaded(object sender, RoutedEventArgs e)
@@ -179,7 +228,8 @@ namespace ShydControls.Wpf.IndustrialComponents
                     for (int i = 0; i < GateValveStatus.Count; i++)
                     {
                         if (i == 10)
-                        {//这里面控制动画不起作用
+                        {
+                            //这里面控制动画不起作用
                             //if (GateValveStatus[i] == null)
                             //{
                             //    _gateValves[i].Background = _radialBrush;
@@ -214,7 +264,7 @@ namespace ShydControls.Wpf.IndustrialComponents
                         {
                             _gateValves[i].Background = _brush3;
                         }
-                        else if ((bool)GateValveStatus[i])
+                        else if ((bool)GateValveStatus[i]!)
                         {
                             _gateValves[i].Background = _onBrush;
                         }
