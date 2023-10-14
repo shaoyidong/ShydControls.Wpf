@@ -155,12 +155,13 @@
         </EventTrigger>
     </UserControl.Triggers>-->
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+        <!--<Grid.Background>
+            <SolidColorBrush Color=" #FFECECED" />
+            --><!--<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Offset="0" Color="WhiteSmoke" />
                 <GradientStop Offset="1" Color="#cfcbcf" />
-            </LinearGradientBrush>
-        </Grid.Background>
+            </LinearGradientBrush>--><!--
+        </Grid.Background>-->
         <Viewbox Stretch="Uniform">
             <Canvas
                 Width="1600"
@@ -213,7 +214,7 @@
                             <RotateTransform Angle="46" CenterX="55.54565175270484" CenterY="104.55479490444448" />
                         </TransformGroup>
                     </Canvas.RenderTransform>
-                    <Ellipse
+                    <Ellipse 
                         Width="55"
                         Height="55"
                         HorizontalAlignment="Left"
@@ -225,7 +226,7 @@
                             <RectangleGeometry Rect="0,0 41.35,55" />
                         </Ellipse.Clip>-->
                     </Ellipse>
-                    <Polyline
+                    <Polyline 
                         Width="110"
                         Height="55"
                         ClipToBounds="True"
@@ -238,7 +239,7 @@
                                 <RectangleGeometry Rect="41.25,0 40,55" />
                             </Polyline.Clip>-->
                     </Polyline>
-                    <Line
+                    <Line 
                         Canvas.Left="79"
                         Width="30"
                         Height="55"

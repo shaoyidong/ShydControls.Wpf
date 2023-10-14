@@ -1,0 +1,1817 @@
+﻿<UserControl
+    x:Class="ShydControls.Wpf.IndustrialComponents.MbeInstituteOfTechnicalPhysics3Inches"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:ShydControls.Wpf.IndustrialComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="690"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Color x:Key="Color1">
+            #FF5B5C5F
+        </Color>
+        <Color x:Key="Color2">
+            #FFECECED
+        </Color>
+        <Color x:Key="Color3">
+            #FFB1B3B6
+        </Color>
+        <Color x:Key="Color4">
+            #FF5B5C5F
+        </Color>
+        <Color x:Key="Color5">
+            #FFCECECE
+        </Color>
+        <LinearGradientBrush x:Key="BrushV" StartPoint="0.5,1" EndPoint="0.5,0">
+            <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+            <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+            <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+            <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="BrushH" StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+            <GradientStop Offset="0.45" Color="{DynamicResource Color2}" />
+            <GradientStop Offset="0.77" Color="{DynamicResource Color3}" />
+            <GradientStop Offset="1" Color="{DynamicResource Color4}" />
+        </LinearGradientBrush>
+        <RadialGradientBrush x:Key="BrushRadial">
+            <GradientStop Offset="1" Color="{DynamicResource Color1}" />
+            <GradientStop Offset="0.9" Color="{DynamicResource Color3}" />
+            <GradientStop Offset="0" Color="{DynamicResource Color5}" />
+        </RadialGradientBrush>
+        <Color x:Key="ColorOn">
+            #c0ffc0
+        </Color>
+        <Color x:Key="ColorOff">
+            #ffc0c0
+        </Color>
+        <!--<SolidColorBrush
+            x:Key="BrushMainShutter"
+            x:Name="BrushMainShutter"
+            Color="{StaticResource ColorOff}" />-->
+        <SolidColorBrush x:Key="BurshOn" Color="{StaticResource ColorOn}" />
+        <SolidColorBrush x:Key="BurshOff" Color="{StaticResource ColorOff}" />
+        <SolidColorBrush x:Key="Brush3" Color="{StaticResource Color3}" />
+        <!--<Storyboard x:Key="gv11OffSb" Timeline.DesiredFrameRate="30" />
+        <Storyboard x:Key="gv11OnSb" Timeline.DesiredFrameRate="30" />-->
+        <Storyboard
+            x:Key="rotationStoryboard"
+            RepeatBehavior="Forever"
+            Timeline.DesiredFrameRate="30"
+            Duration="0:0:1">
+            <DoubleAnimation
+                Storyboard.TargetName="manipulatorRt"
+                Storyboard.TargetProperty="RenderTransform.Children[0].Angle"
+                From="0"
+                To="360"
+                Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard
+            x:Key="mainShutterOnStoryboard"
+            Timeline.DesiredFrameRate="30"
+            Duration="0:0:1.5">
+            <DoubleAnimation
+                Storyboard.TargetName="canvasMainShutter"
+                Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                To="46"
+                Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ColorAnimation
+                Storyboard.TargetName="mainShutterBg"
+                Storyboard.TargetProperty="Color"
+                To="{StaticResource ColorOn}"
+                Duration="0:0:1.5" />
+        </Storyboard>
+        <Storyboard
+            x:Key="mainShutterOffStoryboard"
+            Timeline.DesiredFrameRate="30"
+            Duration="0:0:1.5">
+            <DoubleAnimation
+                Storyboard.TargetName="canvasMainShutter"
+                Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
+                To="0"
+                Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ColorAnimation
+                Storyboard.TargetName="mainShutterBg"
+                Storyboard.TargetProperty="Color"
+                To="{StaticResource ColorOff}"
+                Duration="0:0:1.5" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <!--<i:Interaction.Triggers>
+        <i:DataTrigger Binding="{Binding Path=GateValveStatus[10], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Value="false">
+            <i:ControlStoryboardAction ControlStoryboardOption="Stop" Storyboard="{StaticResource gv11OnSb}" />
+            <i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource gv11OffSb}" />
+        </i:DataTrigger>
+        <i:DataTrigger Binding="{Binding Path=GateValveStatus[10], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Value="true">
+            <i:ControlStoryboardAction ControlStoryboardOption="Stop" Storyboard="{StaticResource gv11OffSb}" />
+            <i:ControlStoryboardAction ControlStoryboardOption="Play" Storyboard="{StaticResource gv11OnSb}" />
+        </i:DataTrigger>
+    </i:Interaction.Triggers>-->
+    <!--<UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource gv11OffSb}" />
+        </EventTrigger>
+    </UserControl.Triggers>-->
+    <Grid>
+        <!--<Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="WhiteSmoke" />
+                <GradientStop Offset="1" Color="#cfcbcf" />
+            </LinearGradientBrush>
+        </Grid.Background>-->
+        <Viewbox Stretch="Uniform">
+            <Canvas
+                Width="1503"
+                Height="580"
+                Margin="-820,-125,0,0">
+                <Canvas.Resources>
+                    <Style TargetType="Polygon">
+                        <Setter Property="Fill" Value="{StaticResource BrushV}" />
+                    </Style>
+                    <Style TargetType="Polyline">
+                        <Setter Property="Fill" Value="{StaticResource BrushV}" />
+                    </Style>
+                    <Style TargetType="Path">
+                        <Setter Property="Fill" Value="{StaticResource BrushV}" />
+                    </Style>
+                </Canvas.Resources>
+
+
+                <!--<Path
+                    x:Name="manipulatorRt"
+                    Canvas.Left="1290.177"
+                    Canvas.Top="306.529"
+                    Width="60"
+                    Height="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="2"
+                    Data="M 5,25 A 25,25 0 1 0 25 5"
+                    Fill="{x:Null}"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stroke="{StaticResource BurshOff}"
+                    StrokeDashCap="Round"
+                    StrokeThickness="2">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="rt" Angle="0" />
+
+
+
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>-->
+                <!--<Path
+                    x:Name="manipulatorRt"
+                    Canvas.Left="1290.177"
+                    Canvas.Top="306.529"
+                    Width="60"
+                    Height="60"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="2"
+                    Data="M 5,25 A 25,25 0 1 0 25 5"
+                    Fill="{x:Null}"
+                    RenderTransformOrigin="0.49,0.49"
+                    Stroke="{StaticResource BurshOff}"
+                    StrokeDashCap="Round"
+                    StrokeThickness="2">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform x:Name="rt" Angle="0" CenterX="0.5" CenterY="0.5" />
+                -->
+                <!--<ScaleTransform ScaleY="0.2" />-->
+                <!--
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>-->
+                <Polygon
+                    Fill="{StaticResource BrushH}"
+                    Points="1104.52641702603,554.213821790849 1175.02559488723,554.213821790849 1175.02559488723,129.192731518646 1104.52641702603,129.192731518646"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1400.67012068377"
+                    X2="1430.73247913629"
+                    Y1="289.401153032183"
+                    Y2="276.959497920163" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1421.71377160053"
+                    X2="1440.3995904818"
+                    Y1="308.034153105159"
+                    Y2="300.309713201489" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1400.67012068377"
+                    X2="1430.73247913629"
+                    Y1="383.56856162884"
+                    Y2="396.01021674086" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1421.71377160053"
+                    X2="1440.3995904818"
+                    Y1="364.935561555864"
+                    Y2="372.718966649639" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1085.95848974653"
+                    X2="1104.52641702603"
+                    Y1="431.094504852952"
+                    Y2="431.212435233161" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1085.95848974653"
+                    X2="1103.99590481804"
+                    Y1="494.835875355762"
+                    Y2="494.835875355762" />-->
+
+                <Polyline
+                    Points="970.896286414544,178.192804495366 970.896286414544,177.603152594322 902.754940588837,177.603152594322 902.754940588837,242.40589651901 970.896286414544,242.40589651901 970.896286414544,241.816244617967"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="895.976173486799,174.595927899 902.754940588837,174.595927899 902.754940588837,245.413121214333 895.976173486799,245.413121214333"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="899.748704743586,174.595927899 902.754940588837,174.595927899 902.754940588837,245.413121214333 899.748704743586,245.413121214333"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polyline
+                    Points="1048.11528557689,178.133839305262 1069.51261129898,178.133839305262 1069.51261129898,241.875209808071 1048.11528557689,241.875209808071"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <StackPanel
+                    Canvas.Left="1032.16"
+                    Canvas.Top="315.392"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="180" />
+
+                    </StackPanel.RenderTransform>
+                    <Path
+                        Width="34"
+                        Height="46"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        d:IsLocked="True"
+                        Data="M0.16495768,41.617488 L33.528239,41.617488 29.873698,45.627116 3.8196208,45.627116 z M2.287028,0.16495768 L31.347331,0.16495768 31.347331,21.451396 2.287028,21.451396 z M0.16495768,24.517588 L33.528239,24.517588 33.528239,41.617488 0.16495768,41.617488 z M2.287028,21.451396 L31.347331,21.451396 33.528239,24.517588 0.16495768,24.517588 z"
+                        Fill="{StaticResource BrushH}"
+                        Stretch="Fill"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1461.225"
+                        Canvas.Top="191.647"
+                        Width="45"
+                        Height="8"
+                        Margin="0,-0.3,0,0"
+                        Background="{StaticResource Brush3}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0.329915357834785,0.329915357834785,0.329915357834785">
+                        <Border
+                            x:Name="gv03"
+                            Height="4.3"
+                            d:IsLocked="True"
+                            Background="{StaticResource Brush3}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785" />
+                    </Border>
+                    <Border
+                        Width="30"
+                        Height="4"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0" />
+                </StackPanel>
+                <Polygon
+                    Fill="{StaticResource BrushRadial}"
+                    Points="1059.55077094903,209.975041961614 1059.43287934725,206.26023498504 1059.02025874104,202.545428008465 1058.31290913039,198.830621031891 1057.3697763162,195.233744435525 1056.13191449756,191.695833029264 1054.5993236745,188.275852003211 1052.88989544876,184.973801357367 1050.8857382186,181.789681091732 1048.64579778488,178.78245639641 1046.2290199485,175.9521272714 1043.57645890857,173.298693716704 1040.74706046598,170.822155732321 1037.74082462073,168.64044369846 1034.55775137282,166.635627234912 1031.25678652313,164.866671531781 1027.83793007167,163.392541779172 1024.30118201843,162.154272786981 1020.64654236342,161.151864555207 1016.9919027084,160.444282273955 1013.27831725251,160.031525943224 1009.50578599572,159.913595563015 1005.79220053982,160.031525943224 1002.07861508392,160.444282273955 998.423975428908,161.151864555207 994.769335773896,162.154272786981 991.232587720659,163.392541779172 987.813731269196,164.866671531781 984.512766419508,166.635627234912 981.329693171594,168.64044369846 978.323457326343,170.822155732321 975.494058883753,173.298693716704 972.841497843825,175.9521272714 970.424720007446,178.78245639641 968.184779573729,181.789681091732 966.180622343561,184.973801357367 964.47119411783,188.275852003211 962.93860329476,191.695833029264 961.700741476127,195.233744435525 960.75760866193,198.830621031891 960.050259051283,202.545428008465 959.637638445072,206.26023498504 959.519746843297,209.975041961614 959.637638445072,213.748814128293 960.050259051283,217.463621104868 960.75760866193,221.119462891338 961.700741476127,224.775304677808 962.93860329476,228.313216084069 964.47119411783,231.733197110122 966.180622343561,235.035247755966 968.184779573729,238.219368021601 970.424720007446,241.226592716923 972.841497843825,244.056921841932 975.494058883753,246.710355396628 978.323457326343,249.186893381011 981.329693171594,251.368605414873 984.512766419508,253.373421878421 987.813731269196,255.142377581552 991.232587720659,256.61650733416 994.769335773896,257.854776326352 998.423975428908,258.857184558126 1002.07861508392,259.505801649274 1005.79220053982,259.918557980004 1009.50578599572,260.095453550317 1013.27831725251,259.918557980004 1016.9919027084,259.505801649274 1020.64654236342,258.857184558126 1024.30118201843,257.854776326352 1027.83793007167,256.61650733416 1031.25678652313,255.142377581552 1034.55775137282,253.373421878421 1037.74082462073,251.368605414873 1040.74706046598,249.186893381011 1043.57645890857,246.710355396628 1046.2290199485,244.056921841932 1048.64579778488,241.226592716923 1050.8857382186,238.219368021601 1052.88989544876,235.035247755966 1054.5993236745,231.733197110122 1056.13191449756,228.313216084069 1057.3697763162,224.775304677808 1058.31290913039,221.119462891338 1059.02025874104,217.463621104868 1059.43287934725,213.748814128293"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Fill="{StaticResource BrushRadial}"
+                    Points="1022.29702478826,209.975041961614 1022.17913318649,208.206086258484 1021.82545838116,206.378165365248 1021.1770545714,204.668174852222 1020.29286755809,203.076114719405 1019.17289734123,201.601984966796 1017.87608972171,200.3047507845 1016.46139050042,199.243377362621 1014.86985387646,198.358899511056 1013.16042565073,197.710282419908 1011.33310582322,197.356491279282 1009.50578599572,197.179595708969 1007.7374119691,197.356491279282 1005.91009214159,197.710282419908 1004.20066391586,198.358899511056 1002.60912729191,199.243377362621 1001.13548226972,200.3047507845 999.838674650203,201.601984966796 998.777650234232,203.076114719405 997.893463220923,204.668174852222 997.245059411162,206.378165365248 996.891384605839,208.206086258484 996.714547203177,209.975041961614 996.891384605839,211.802962854849 997.245059411162,213.630883748084 997.893463220923,215.340874261111 998.777650234232,216.932934393928 999.838674650203,218.407064146537 1001.13548226972,219.645333138729 1002.60912729191,220.765671750712 1004.20066391586,221.650149602277 1005.91009214159,222.298766693425 1007.7374119691,222.652557834051 1009.50578599572,222.77048821426 1011.33310582322,222.652557834051 1013.16042565073,222.298766693425 1014.86985387646,221.650149602277 1016.46139050042,220.765671750712 1017.87608972171,219.645333138729 1019.17289734123,218.407064146537 1020.29286755809,216.932934393928 1021.1770545714,215.340874261111 1021.82545838116,213.630883748084 1022.17913318649,211.802962854849"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Border
+                    Canvas.Left="1085.95848974653"
+                    Canvas.Top="178.133839305262"
+                    Width="18.5679272795"
+                    Height="63.741370502809"
+                    Background="{StaticResource BrushV}"
+                    BorderBrush="#FF212830"
+                    BorderThickness="0,0.329915357834785,0,0.329915357834785" />
+                <Border
+                    Canvas.Left="1069.348"
+                    Canvas.Top="171.895"
+                    Width="16.5259"
+                    Height="75.8882"
+                    Background="{StaticResource Brush3}"
+                    BorderBrush="#FF212830"
+                    BorderThickness="0.329915357834785,0.329915357834785,0.329915357834785,0.329915357834785">
+                    <Border
+                        x:Name="gv05"
+                        Canvas.Left="1069.348"
+                        Canvas.Top="171.895"
+                        Width="8.8419"
+                        Height="75.8882"
+                        Background="{StaticResource Brush3}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0" />
+                </Border>
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1085.95848974653"
+                    X2="1104.52641702603"
+                    Y1="178.133839305262"
+                    Y2="178.192804495366" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1085.95848974653"
+                    X2="1103.99590481804"
+                    Y1="241.875209808071"
+                    Y2="241.875209808071" />-->
+                <Polygon
+                    Fill="{StaticResource BrushV}"
+                    Points="578.140415102535,205.552652703787 823.296000992771,205.552652703787 823.296000992771,214.397431219441 578.140415102535,214.397431219441"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="825.418049824714,202.840253958987 828.070610864642,202.840253958987 828.070610864642,217.168795154346 825.418049824714,217.168795154346"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="828.188502466416,203.194045099613 850.94158160891,203.194045099613 850.94158160891,216.81500401372 828.188502466416,216.81500401372"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="851.059473210685,202.840253958987 855.657245679893,202.840253958987 855.657245679893,217.168795154346 851.059473210685,217.168795154346"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="853.476251047064,202.840253958987 853.712034250613,202.840253958987 853.712034250613,217.168795154346 853.476251047064,217.168795154346"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="823.472838395433,202.840253958987 825.653833028263,202.840253958987 825.653833028263,217.168795154346 823.472838395433,217.168795154346"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="855.775137281668,206.849886886083 873.458877547855,206.849886886083 873.458877547855,213.15916222725 855.775137281668,213.15916222725"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="893.441504048646,200.363715974604 895.976173486799,200.363715974604 895.976173486799,219.586367948624 893.441504048646,219.586367948624"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="884.187013309341,202.899219149091 893.441504048646,202.899219149091 893.441504048646,217.109829964241 884.187013309341,217.109829964241"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="876.583004994881,197.828212800117 884.187013309341,197.828212800117 884.187013309341,222.121871123112 876.583004994881,222.121871123112"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="875.050414171811,200.127855214187 876.583004994881,200.127855214187 876.583004994881,219.881193899146 875.050414171811,219.881193899146"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Polygon
+                    Points="873.458877547855,205.552652703787 875.050414171811,205.552652703787 875.050414171811,214.397431219441 873.458877547855,214.397431219441"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />
+                <Canvas
+                    Canvas.Left="-91.068"
+                    Canvas.Top="67.168"
+                    Width="1593"
+                    Height="487"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1413.4024,336.51434 1413.2845,331.26644 1412.813,326.01854 1412.1056,320.8296 1411.0446,315.69963 1409.7478,310.62862 1408.1562,305.61658 1406.3289,300.72247 1404.1479,295.94629 1401.7901,291.28804 1399.0786,286.80668 1396.1902,282.44326 1393.0661,278.25673 1389.6473,274.2471 1386.0516,270.41436 1382.279,266.81749 1378.2707,263.45647 1374.0856,260.33131 1369.7236,257.38305 1365.2437,254.72962 1360.587,252.31205 1355.8124,250.1893 1350.9199,248.30242 1345.9095,246.71036 1340.8401,245.41312 1335.7118,244.41071 1330.5246,243.70313 1325.3374,243.23141 1320.0912,243.11348 1314.845,243.23141 1309.6578,243.70313 1304.4706,244.41071 1299.3423,245.41312 1294.273,246.71036 1289.2626,248.30242 1284.3701,250.1893 1279.5954,252.31205 1274.9387,254.72962 1270.4588,257.38305 1266.0969,260.33131 1261.9117,263.45647 1257.9034,266.81749 1254.1309,270.41436 1250.5352,274.2471 1247.1753,278.25673 1243.9922,282.44326 1241.1038,286.80668 1238.4513,291.28804 1236.0345,295.94629 1233.9124,300.72247 1232.0262,305.61658 1230.4346,310.62862 1229.1378,315.69963 1228.1358,320.8296 1227.3695,326.01854 1226.9568,331.26644 1226.78,336.51434 1226.9568,341.70328 1227.3695,346.95118 1228.1358,352.14012 1229.1378,357.27009 1230.4346,362.34109 1232.0262,367.35313 1233.9124,372.24725 1236.0345,377.02343 1238.4513,381.68168 1241.1038,386.16303 1243.9922,390.52645 1247.1753,394.71298 1250.5352,398.72262 1254.1309,402.55535 1257.9034,406.15223 1261.9117,409.51325 1266.0969,412.6384 1270.4588,415.58666 1274.9387,418.24009 1279.5954,420.65767 1284.3701,422.78041 1289.2626,424.6673 1294.273,426.25936 1299.3423,427.55659 1304.4706,428.559 1309.6578,429.32555 1314.845,429.73831 1320.0912,429.85624 1325.3374,429.73831 1330.5246,429.32555 1335.7118,428.559 1340.8401,427.55659 1345.9095,426.25936 1350.9199,424.6673 1355.8124,422.78041 1360.587,420.65767 1365.2437,418.24009 1369.7236,415.58666 1374.0856,412.6384 1378.2707,409.51325 1382.279,406.15223 1386.0516,402.55535 1389.6473,398.72262 1393.0661,394.71298 1396.1902,390.52645 1399.0786,386.16303 1401.7901,381.68168 1404.1479,377.02343 1406.3289,372.24725 1408.1562,367.35313 1409.7478,362.34109 1411.0446,357.27009 1412.1056,352.14012 1412.813,346.95118 1413.2845,341.70328"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="2"
+                        d:Fill="{x:Null}"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1355.3997,336.51434 1355.2229,333.38918 1354.8692,330.32299 1354.1619,327.31577 1353.2777,324.42648 1352.0988,321.53718 1350.6841,318.82478 1348.9747,316.23031 1347.1473,313.75378 1345.0253,311.5131 1342.7853,309.44932 1340.3096,307.56243 1337.716,305.91141 1335.0045,304.49624 1332.1751,303.31694 1329.2278,302.37349 1326.2216,301.72488 1323.1564,301.31212 1320.0912,301.19419 1317.026,301.31212 1313.9608,301.72488 1310.9546,302.37349 1308.0073,303.31694 1305.1779,304.49624 1302.4664,305.91141 1299.8728,307.56243 1297.3971,309.44932 1295.1571,311.5131 1293.094,313.75378 1291.2078,316.23031 1289.5573,318.82478 1288.1426,321.53718 1286.9637,324.42648 1286.0205,327.31577 1285.3721,330.32299 1284.9595,333.38918 1284.8416,336.51434 1284.9595,339.58053 1285.3721,342.64672 1286.0205,345.65394 1286.9637,348.54324 1288.1426,351.43253 1289.5573,354.14493 1291.2078,356.7394 1293.094,359.21594 1295.1571,361.45662 1297.3971,363.5204 1299.8728,365.40728 1302.4664,367.05831 1305.1779,368.47347 1308.0073,369.65278 1310.9546,370.59622 1313.9608,371.24484 1317.026,371.65759 1320.0912,371.83449 1323.1564,371.65759 1326.2216,371.24484 1329.2278,370.59622 1332.1751,369.65278 1335.0045,368.47347 1337.716,367.05831 1340.3096,365.40728 1342.7853,363.5204 1345.0253,361.45662 1347.1473,359.21594 1348.9747,356.7394 1350.6841,354.14493 1352.0988,351.43253 1353.2777,348.54324 1354.1619,345.65394 1354.8692,342.64672 1355.2229,339.58053"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Canvas
+                        x:Name="canvasMainShutter"
+                        Canvas.Left="1383.745"
+                        Canvas.Top="309.029"
+                        Width="110"
+                        Height="55"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        d:Visibility="Visible"
+                        Visibility="Collapsed">
+                        <Canvas.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="70" CenterX="27.5" CenterY="27.5" />
+                                <RotateTransform Angle="46" CenterX="55.54565175270484" CenterY="104.55479490444448" />
+                            </TransformGroup>
+                        </Canvas.RenderTransform>
+                        <Ellipse
+                            Width="55"
+                            Height="55"
+                            HorizontalAlignment="Left"
+                            StrokeDashCap="Triangle">
+                            <Ellipse.Fill>
+                                <SolidColorBrush x:Name="mainShutterBg" Color="{StaticResource ColorOff}" />
+                            </Ellipse.Fill>
+                            <!--<Ellipse.Clip>
+                            <RectangleGeometry Rect="0,0 41.35,55" />
+                        </Ellipse.Clip>-->
+                        </Ellipse>
+                        <Polyline
+                            Width="110"
+                            Height="55"
+                            ClipToBounds="True"
+                            Fill="{Binding ., ElementName=mainShutterBg}"
+                            Points="41.25,3.68 82.51,27.5 41.25,51.32"
+                            StrokeDashCap="Round"
+                            StrokeEndLineCap="Round"
+                            StrokeStartLineCap="Round">
+                            <!--<Polyline.Clip>
+                                <RectangleGeometry Rect="41.25,0 40,55" />
+                            </Polyline.Clip>-->
+                        </Polyline>
+                        <Line
+                            Canvas.Left="79"
+                            Width="30"
+                            Height="55"
+                            HorizontalAlignment="Right"
+                            Stroke="{Binding ., ElementName=mainShutterBg}"
+                            StrokeEndLineCap="Round"
+                            StrokeStartLineCap="Round"
+                            StrokeThickness="5"
+                            X1="0"
+                            X2="27"
+                            Y1="27.5"
+                            Y2="27.5" />
+                        <!--<Rectangle
+                            Width="36"
+                            Height="5"
+                            HorizontalAlignment="Right"
+                            Fill="{StaticResource BurshOff}"
+                            />-->
+                    </Canvas>
+                    <Border
+                        Canvas.Left="1375.745"
+                        Canvas.Top="301.029"
+                        Width="71"
+                        Height="71"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="2">
+                        <Ellipse
+                            x:Name="manipulatorRt"
+                            Width="52"
+                            Height="52"
+                            Fill="{x:Null}"
+                            RenderTransformOrigin="0.5,0.5"
+                            Stroke="{StaticResource BurshOff}"
+                            StrokeDashCap="Round"
+                            StrokeThickness="2">
+                            <Ellipse.Clip>
+                                <RectangleGeometry Rect="10 0 32 52" />
+                            </Ellipse.Clip>
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform x:Name="rt" Angle="0" />
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Border>
+
+
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="3"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1342.1959,336.51434 1342.078,333.97884 1341.6654,331.56126 1340.958,329.20266 1340.0149,326.90301 1338.836,324.7213 1337.3623,322.65752 1335.7118,320.8296 1333.8845,319.17857 1331.8804,317.76341 1329.6994,316.52514 1327.4005,315.5817 1325.0427,314.93308 1322.5669,314.46136 1320.0912,314.34343 1317.6155,314.46136 1315.1987,314.93308 1312.7819,315.5817 1310.483,316.52514 1308.361,317.76341 1306.2979,319.17857 1304.4706,320.8296 1302.8201,322.65752 1301.3464,324.7213 1300.1675,326.90301 1299.2244,329.20266 1298.517,331.56126 1298.1044,333.97884 1297.9865,336.51434 1298.1044,338.99088 1298.517,341.40845 1299.2244,343.76706 1300.1675,346.0667 1301.3464,348.24841 1302.8201,350.31219 1304.4706,352.14012 1306.2979,353.79114 1308.361,355.20631 1310.483,356.44457 1312.7819,357.38802 1315.1987,358.03663 1317.6155,358.50836 1320.0912,358.62629 1322.5669,358.50836 1325.0427,358.03663 1327.4005,357.38802 1329.6994,356.44457 1331.8804,355.20631 1333.8845,353.79114 1335.7118,352.14012 1337.3623,350.31219 1338.836,348.24841 1340.0149,346.0667 1340.958,343.76706 1341.6654,341.40845 1342.078,338.99088"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="4"
+                        Points="1312.1335,320.06305 1312.0156,319.4734 1311.7209,319.00168 1311.1904,318.64789 1310.6009,318.52996 1310.0704,318.64789 1309.5399,319.00168 1309.2452,319.4734 1309.1273,320.06305 1309.2452,320.6527 1309.5399,321.12443 1310.0704,321.47822 1310.6009,321.59615 1311.1904,321.47822 1311.7209,321.12443 1312.0156,320.6527"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="5"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1312.7819,320.06305 1312.6051,319.23754 1312.1335,318.52996 1311.4262,318.05824 1310.6009,317.94031 1309.7757,318.05824 1309.1273,318.52996 1308.6557,319.23754 1308.4789,320.06305 1308.6557,320.88856 1309.1273,321.59615 1309.7757,322.0089 1310.6009,322.1858 1311.4262,322.0089 1312.1335,321.59615 1312.6051,320.88856"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="6"
+                        Points="1310.4241,319.82719 1310.3652,319.70926 1310.2473,319.70926 1310.1294,319.70926 1310.0704,319.82719 1310.1294,319.94512 1310.2473,320.00409 1310.3652,319.94512"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="7"
+                        Points="1311.1314,320.29891 1311.1314,320.18098 1311.0136,320.12202 1310.8957,320.18098 1310.8367,320.29891 1310.8957,320.35788 1311.0136,320.41684 1311.1314,320.35788"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="8"
+                        Points="1307.1231,324.30855 1307.0052,323.71889 1306.6516,323.18821 1306.18,322.89338 1305.5905,322.77545 1305.0011,322.89338 1304.5295,323.18821 1304.1758,323.71889 1304.058,324.30855 1304.1758,324.8982 1304.5295,325.36992 1305.0011,325.66474 1305.5905,325.78268 1306.18,325.66474 1306.6516,325.36992 1307.0052,324.8982"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="9"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1307.7126,324.30855 1307.5358,323.48303 1307.0642,322.77545 1306.4158,322.30373 1305.5905,322.12683 1304.7653,322.30373 1304.058,322.77545 1303.5864,323.48303 1303.4685,324.30855 1303.5864,325.13406 1304.058,325.78268 1304.7653,326.2544 1305.5905,326.43129 1306.4158,326.2544 1307.0642,325.78268 1307.5358,325.13406"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="10"
+                        Points="1305.5905,323.89579 1305.5316,323.77786 1305.4137,323.71889 1305.2958,323.77786 1305.2958,323.89579 1305.2958,324.01372 1305.4137,324.01372 1305.5316,324.01372"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="11"
+                        Points="1305.8853,324.7213 1305.8263,324.60337 1305.7084,324.54441 1305.6495,324.60337 1305.5905,324.7213 1305.6495,324.78027 1305.7084,324.83923 1305.8263,324.78027"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1500.782"
+                        Canvas.Top="313.034"
+                        Width="25.4"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="248" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Border
+                        Canvas.Left="1491.738"
+                        Canvas.Top="383.569"
+                        Width="25.4"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="292.8" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Canvas
+                        Canvas.Left="1439.426"
+                        Canvas.Top="429.544"
+                        Width="81"
+                        Height="57"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                        <Canvas.RenderTransform>
+                            <RotateTransform Angle="90" />
+                        </Canvas.RenderTransform>
+                        <Border
+                            Canvas.Left="0"
+                            Canvas.Top="18.692"
+                            Width="26"
+                            Height="19"
+                            Background="{StaticResource BrushV}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785,0,0.329915357834785" />
+                        <Rectangle
+                            Canvas.Left="25.468"
+                            Width="55"
+                            Height="57"
+                            Stroke="#FF212830"
+                            StrokeEndLineCap="Round"
+                            StrokeLineJoin="Round"
+                            StrokeMiterLimit="1"
+                            StrokeStartLineCap="Round"
+                            StrokeThickness="0.329915357834785">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                    <GradientStop Offset="0" Color="{DynamicResource Color1}" />
+                                    <GradientStop Offset="0.1" Color="{DynamicResource Color3}" />
+                                    <GradientStop Offset="0.5" Color="{DynamicResource Color5}" />
+                                    <GradientStop Offset="0.9" Color="{DynamicResource Color3}" />
+                                    <GradientStop Offset="1" Color="{DynamicResource Color1}" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Border
+                            Canvas.Left="8"
+                            Canvas.Top="5.711"
+                            Width="8"
+                            Height="45"
+                            Background="{StaticResource Brush3}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0.329915357834785,0.329915357834785,0.329915357834785,0.329915357834785">
+                            <Border
+                                x:Name="gv02"
+                                Width="4.3"
+                                d:IsLocked="True"
+                                Background="{StaticResource Brush3}"
+                                BorderBrush="#FF212830"
+                                BorderThickness="0.329915357834785,0" />
+                        </Border>
+                    </Canvas>
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1042.7512,301.07626 1045.7575,301.07626 1045.7575,371.89345 1042.7512,371.89345"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1038.9787,301.07626 1042.7512,301.07626 1042.7512,371.89345 1038.9787,371.89345"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1045.7575,368.88623 1104.5264,368.88623 1104.5264,304.08349 1045.7575,304.08349"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="721.08398,332.03299 966.29851,332.03299 966.29851,340.93673 721.08398,340.93673"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="968.42056,329.32059 971.07312,329.32059 971.07312,343.64913 968.42056,343.64913"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="971.19102,329.67438 993.94409,329.67438 993.94409,343.29534 971.19102,343.29534"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="994.06199,329.32059 998.65976,329.32059 998.65976,343.64913 994.06199,343.64913"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="996.41982,329.32059 996.71455,329.32059 996.71455,343.64913 996.41982,343.64913"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="966.41641,329.32059 968.65635,329.32059 968.65635,343.64913 966.41641,343.64913"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="998.77765,333.33022 1016.4614,333.33022 1016.4614,339.6395 998.77765,339.6395"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1036.444,326.84405 1038.9787,326.84405 1038.9787,346.12567 1036.444,346.12567"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1027.1306,329.37955 1036.444,329.37955 1036.444,343.59016 1027.1306,343.59016"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1019.5855,324.36751 1027.1306,324.36751 1027.1306,348.6022 1019.5855,348.6022"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1018.0529,326.60819 1019.5855,326.60819 1019.5855,346.36153 1018.0529,346.36153"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="1016.4614,332.09195 1018.0529,332.09195 1018.0529,340.87776 1016.4614,340.87776"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1460.379"
+                        Canvas.Top="257.147"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="202.5" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter04"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1383.3401,220.29395 1383.2222,218.3481 1382.8095,216.40225 1382.1611,214.51536 1381.277,212.74641 1380.2159,211.09538 1378.9191,209.56229 1377.3865,208.26505 1375.736,207.14471 1373.9677,206.3192 1372.0814,205.67058 1370.1362,205.25783 1368.191,205.1399 1366.1868,205.25783 1364.2416,205.67058 1362.3554,206.3192 1360.587,207.14471 1358.9365,208.26505 1357.4628,209.56229 1356.166,211.09538 1355.0461,212.74641 1354.1619,214.51536 1353.5135,216.40225 1353.1598,218.3481 1352.983,220.29395 1353.1598,222.29877 1353.5135,224.24462 1354.1619,226.1315 1355.0461,227.90046 1356.166,229.55149 1357.4628,231.02561 1358.9365,232.38181 1360.587,233.44319 1362.3554,234.32767 1364.2416,234.97628 1366.1868,235.38904 1368.191,235.50697 1370.1362,235.38904 1372.0814,234.97628 1373.9677,234.32767 1375.736,233.44319 1377.3865,232.38181 1378.9191,231.02561 1380.2159,229.55149 1381.277,227.90046 1382.1611,226.1315 1382.8095,224.24462 1383.2222,222.29877"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1486.964"
+                        Canvas.Top="282.031"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="224.7" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter11"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1424.0716,247.59483 1423.9537,245.59002 1423.5411,243.64417 1422.9516,241.75728 1422.0674,239.98832 1420.9475,238.3373 1419.6507,236.86317 1418.177,235.50697 1416.5265,234.4456 1414.6992,233.56112 1412.8719,232.9125 1410.9267,232.49974 1408.9225,232.38181 1406.9184,232.49974 1404.9732,232.9125 1403.1458,233.56112 1401.3185,234.4456 1399.668,235.50697 1398.1944,236.86317 1396.8976,238.3373 1395.7776,239.98832 1394.8934,241.75728 1394.304,243.64417 1393.8914,245.59002 1393.7735,247.59483 1393.8914,249.54068 1394.304,251.48654 1394.8934,253.37342 1395.7776,255.14238 1396.8976,256.7934 1398.1944,258.3265 1399.668,259.62373 1401.3185,260.74407 1403.1458,261.56958 1404.9732,262.2182 1406.9184,262.63096 1408.9225,262.74889 1410.9267,262.63096 1412.8719,262.2182 1414.6992,261.56958 1416.5265,260.74407 1418.177,259.62373 1419.6507,258.3265 1420.9475,256.7934 1422.0674,255.14238 1422.9516,253.37342 1423.5411,251.48654 1423.9537,249.54068"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+
+                    <Polygon
+                        x:Name="cellShutter06"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1448.7699,288.33978 1448.652,286.57082 1448.2983,284.80187 1447.6499,283.09188 1446.7657,281.49982 1445.7047,280.08465 1444.4079,278.78742 1442.9932,277.72605 1441.4017,276.84157 1439.6922,276.25192 1437.9239,275.83916 1436.1555,275.72123 1434.3282,275.83916 1432.6187,276.25192 1430.9093,276.84157 1429.3178,277.72605 1427.9031,278.78742 1426.6063,280.08465 1425.5452,281.49982 1424.6611,283.09188 1424.0127,284.80187 1423.659,286.57082 1423.5411,288.33978 1423.659,290.1677 1424.0127,291.93666 1424.6611,293.64665 1425.5452,295.17974 1426.6063,296.65387 1427.9031,297.95111 1429.3178,299.01248 1430.9093,299.89696 1432.6187,300.48661 1434.3282,300.89937 1436.1555,301.0173 1437.9239,300.89937 1439.6922,300.48661 1441.4017,299.89696 1442.9932,299.01248 1444.4079,297.95111 1445.7047,296.65387 1446.7657,295.17974 1447.6499,293.64665 1448.2983,291.93666 1448.652,290.1677"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1361.939"
+                        Canvas.Top="415.823"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="23" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter08"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1287.1995,452.67576 1287.0816,450.67095 1286.6689,448.7251 1286.0205,446.83821 1285.1364,445.06925 1284.0753,443.41823 1282.7785,441.9441 1281.2459,440.5879 1279.5954,439.52653 1277.8271,438.64205 1275.9408,437.99343 1273.9956,437.58068 1272.0504,437.46275 1270.0462,437.58068 1268.101,437.99343 1266.2147,438.64205 1264.4464,439.52653 1262.7959,440.5879 1261.3222,441.9441 1260.0254,443.41823 1258.9055,445.06925 1258.0213,446.83821 1257.3729,448.7251 1257.0192,450.67095 1256.8424,452.67576 1257.0192,454.62162 1257.3729,456.56747 1258.0213,458.45435 1258.9055,460.22331 1260.0254,461.87433 1261.3222,463.40743 1262.7959,464.70466 1264.4464,465.825 1266.2147,466.65051 1268.101,467.29913 1270.0462,467.71189 1272.0504,467.82982 1273.9956,467.71189 1275.9408,467.29913 1277.8271,466.65051 1279.5954,465.825 1281.2459,464.70466 1282.7785,463.40743 1284.0753,461.87433 1285.1364,460.22331 1286.0205,458.45435 1286.6689,456.56747 1287.0816,454.62162"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1335.355"
+                        Canvas.Top="390.939"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="45" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter09"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1246.4679,425.37488 1246.2911,423.42903 1245.9374,421.48318 1245.289,419.59629 1244.4048,417.82734 1243.2848,416.17631 1241.988,414.64322 1240.5144,413.34598 1238.8639,412.22564 1237.0955,411.40013 1235.2093,410.75151 1233.264,410.33876 1231.2599,410.22083 1229.3147,410.33876 1227.3695,410.75151 1225.4832,411.40013 1223.7148,412.22564 1222.0643,413.34598 1220.5318,414.64322 1219.2349,416.17631 1218.115,417.82734 1217.2897,419.59629 1216.6413,421.48318 1216.2287,423.42903 1216.1108,425.37488 1216.2287,427.3797 1216.6413,429.32555 1217.2897,431.21244 1218.115,432.98139 1219.2349,434.63242 1220.5318,436.10655 1222.0643,437.46275 1223.7148,438.52412 1225.4832,439.4086 1227.3695,440.05721 1229.3147,440.46997 1231.2599,440.5879 1233.264,440.46997 1235.2093,440.05721 1237.0955,439.4086 1238.8639,438.52412 1240.5144,437.46275 1241.988,436.10655 1243.2848,434.63242 1244.4048,432.98139 1245.289,431.21244 1245.9374,429.32555 1246.2911,427.3797"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1320.284"
+                        Canvas.Top="359.956"
+                        Width="25.7"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="67" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter02"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1216.7003,384.62994 1216.5824,382.80201 1216.1698,381.03306 1215.5214,379.32307 1214.6961,377.78997 1213.5761,376.31584 1212.3383,375.01861 1210.8646,373.95724 1209.2731,373.07276 1207.6226,372.48311 1205.8542,372.07035 1204.0269,371.95242 1202.2586,372.07035 1200.4902,372.48311 1198.7808,373.07276 1197.1892,373.95724 1195.7745,375.01861 1194.4777,376.31584 1193.4167,377.78997 1192.5325,379.32307 1191.943,381.03306 1191.5304,382.80201 1191.4125,384.62994 1191.5304,386.39889 1191.943,388.16785 1192.5325,389.87784 1193.4167,391.4699 1194.4777,392.88506 1195.7745,394.1823 1197.1892,395.24367 1198.7808,396.12815 1200.4902,396.7178 1202.2586,397.13056 1204.0269,397.24849 1205.8542,397.13056 1207.6226,396.7178 1209.2731,396.12815 1210.8646,395.24367 1212.3383,394.1823 1213.5761,392.88506 1214.6961,391.4699 1215.5214,389.87784 1216.1698,388.16785 1216.5824,386.39889"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1330.58"
+                        Canvas.Top="289.401"
+                        Width="25.7"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="113" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Border
+                        Canvas.Left="1266.094"
+                        Canvas.Top="304.614"
+                        Width="57"
+                        Height="64"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushV}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0,0.329915357834785,0,0.329915357834785" />
+                    <Border
+                        Canvas.Left="1389.939"
+                        Canvas.Top="245.531"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="157.8" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter05"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1287.1995,220.29395 1287.0816,218.3481 1286.6689,216.40225 1286.0205,214.51536 1285.1364,212.74641 1284.0753,211.09538 1282.7785,209.56229 1281.2459,208.26505 1279.5954,207.14471 1277.8271,206.3192 1275.9408,205.67058 1273.9956,205.25783 1272.0504,205.1399 1270.0462,205.25783 1268.101,205.67058 1266.2147,206.3192 1264.4464,207.14471 1262.7959,208.26505 1261.3222,209.56229 1260.0254,211.09538 1258.9055,212.74641 1258.0213,214.51536 1257.3729,216.40225 1257.0192,218.3481 1256.8424,220.29395 1257.0192,222.29877 1257.3729,224.24462 1258.0213,226.1315 1258.9055,227.90046 1260.0254,229.55149 1261.3222,231.02561 1262.7959,232.38181 1264.4464,233.44319 1266.2147,234.32767 1268.101,234.97628 1270.0462,235.38904 1272.0504,235.50697 1273.9956,235.38904 1275.9408,234.97628 1277.8271,234.32767 1279.5954,233.44319 1281.2459,232.38181 1282.7785,231.02561 1284.0753,229.55149 1285.1364,227.90046 1286.0205,226.1315 1286.6689,224.24462 1287.0816,222.29877"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1356.752"
+                        Canvas.Top="260.626"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="135.6" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter12"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1246.4679,247.59483 1246.2911,245.59002 1245.9374,243.64417 1245.289,241.75728 1244.4048,239.98832 1243.2848,238.3373 1241.988,236.86317 1240.5144,235.50697 1238.8639,234.4456 1237.0955,233.56112 1235.2093,232.9125 1233.264,232.49974 1231.2599,232.38181 1229.3147,232.49974 1227.3695,232.9125 1225.4832,233.56112 1223.7148,234.4456 1222.0643,235.50697 1220.5318,236.86317 1219.2349,238.3373 1218.115,239.98832 1217.2897,241.75728 1216.6413,243.64417 1216.2287,245.59002 1216.1108,247.59483 1216.2287,249.54068 1216.6413,251.48654 1217.2897,253.37342 1218.115,255.14238 1219.2349,256.7934 1220.5318,258.3265 1222.0643,259.62373 1223.7148,260.74407 1225.4832,261.56958 1227.3695,262.2182 1229.3147,262.63096 1231.2599,262.74889 1233.264,262.63096 1235.2093,262.2182 1237.0955,261.56958 1238.8639,260.74407 1240.5144,259.62373 1241.988,258.3265 1243.2848,256.7934 1244.4048,255.14238 1245.289,253.37342 1245.9374,251.48654 1246.2911,249.54068"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Polygon
+                        x:Name="cellShutter01"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1216.7003,288.33978 1216.5824,286.57082 1216.1698,284.80187 1215.5214,283.09188 1214.6961,281.49982 1213.5761,280.08465 1212.3383,278.78742 1210.8646,277.72605 1209.2731,276.84157 1207.6226,276.25192 1205.8542,275.83916 1204.0269,275.72123 1202.2586,275.83916 1200.4902,276.25192 1198.7808,276.84157 1197.1892,277.72605 1195.7745,278.78742 1194.4777,280.08465 1193.4167,281.49982 1192.5325,283.09188 1191.943,284.80187 1191.5304,286.57082 1191.4125,288.33978 1191.5304,290.1677 1191.943,291.93666 1192.5325,293.64665 1193.4167,295.17974 1194.4777,296.65387 1195.7745,297.95111 1197.1892,299.01248 1198.7808,299.89696 1200.4902,300.48661 1202.2586,300.89937 1204.0269,301.0173 1205.8542,300.89937 1207.6226,300.48661 1209.2731,299.89696 1210.8646,299.01248 1212.3383,297.95111 1213.5761,296.65387 1214.6961,295.17974 1215.5214,293.64665 1216.1698,291.93666 1216.5824,290.1677"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1432.439"
+                        Canvas.Top="427.439"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="-22" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter07"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1383.3401,452.67576 1383.2222,450.67095 1382.8095,448.7251 1382.1611,446.83821 1381.277,445.06925 1380.2159,443.41823 1378.9191,441.9441 1377.3865,440.5879 1375.736,439.52653 1373.9677,438.64205 1372.0814,437.99343 1370.1362,437.58068 1368.191,437.46275 1366.1868,437.58068 1364.2416,437.99343 1362.3554,438.64205 1360.587,439.52653 1358.9365,440.5879 1357.4628,441.9441 1356.166,443.41823 1355.0461,445.06925 1354.1619,446.83821 1353.5135,448.7251 1353.1598,450.67095 1352.983,452.67576 1353.1598,454.62162 1353.5135,456.56747 1354.1619,458.45435 1355.0461,460.22331 1356.166,461.87433 1357.4628,463.40743 1358.9365,464.70466 1360.587,465.825 1362.3554,466.65051 1364.2416,467.29913 1366.1868,467.71189 1368.191,467.82982 1370.1362,467.71189 1372.0814,467.29913 1373.9677,466.65051 1375.736,465.825 1377.3865,464.70466 1378.9191,463.40743 1380.2159,461.87433 1381.277,460.22331 1382.1611,458.45435 1382.8095,456.56747 1383.2222,454.62162"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1465.566"
+                        Canvas.Top="412.344"
+                        Width="30.8"
+                        Height="33"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource BrushH}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0,0.329915357834785,0">
+                        <Border.RenderTransform>
+                            <RotateTransform Angle="-45" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Polygon
+                        x:Name="cellShutter10"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1424.0716,425.37488 1423.9537,423.42903 1423.5411,421.48318 1422.9516,419.59629 1422.0674,417.82734 1420.9475,416.17631 1419.6507,414.64322 1418.177,413.34598 1416.5265,412.22564 1414.6992,411.40013 1412.8719,410.75151 1410.9267,410.33876 1408.9225,410.22083 1406.9184,410.33876 1404.9732,410.75151 1403.1458,411.40013 1401.3185,412.22564 1399.668,413.34598 1398.1944,414.64322 1396.8976,416.17631 1395.7776,417.82734 1394.8934,419.59629 1394.304,421.48318 1393.8914,423.42903 1393.7735,425.37488 1393.8914,427.3797 1394.304,429.32555 1394.8934,431.21244 1395.7776,432.98139 1396.8976,434.63242 1398.1944,436.10655 1399.668,437.46275 1401.3185,438.52412 1403.1458,439.4086 1404.9732,440.05721 1406.9184,440.46997 1408.9225,440.5879 1410.9267,440.46997 1412.8719,440.05721 1414.6992,439.4086 1416.5265,438.52412 1418.177,437.46275 1419.6507,436.10655 1420.9475,434.63242 1422.0674,432.98139 1422.9516,431.21244 1423.5411,429.32555 1423.9537,427.3797"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+
+                    <Polygon
+                        x:Name="cellShutter03"
+                        Canvas.Left="91.068"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Fill="{StaticResource BrushRadial}"
+                        Points="1448.7699,384.62994 1448.652,382.80201 1448.2983,381.03306 1447.6499,379.32307 1446.7657,377.78997 1445.7047,376.31584 1444.4079,375.01861 1442.9932,373.95724 1441.4017,373.07276 1439.6922,372.48311 1437.9239,372.07035 1436.1555,371.95242 1434.3282,372.07035 1432.6187,372.48311 1430.9093,373.07276 1429.3178,373.95724 1427.9031,375.01861 1426.6063,376.31584 1425.5452,377.78997 1424.6611,379.32307 1424.0127,381.03306 1423.659,382.80201 1423.5411,384.62994 1423.659,386.39889 1424.0127,388.16785 1424.6611,389.87784 1425.5452,391.4699 1426.6063,392.88506 1427.9031,394.1823 1429.3178,395.24367 1430.9093,396.12815 1432.6187,396.7178 1434.3282,397.13056 1436.1555,397.24849 1437.9239,397.13056 1439.6922,396.7178 1441.4017,396.12815 1442.9932,395.24367 1444.4079,394.1823 1445.7047,392.88506 1446.7657,391.4699 1447.6499,389.87784 1448.2983,388.16785 1448.652,386.39889"
+                        Stroke="#FF212830"
+                        StrokeEndLineCap="Round"
+                        StrokeLineJoin="Round"
+                        StrokeMiterLimit="1"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="0.329915357834785" />
+                    <Border
+                        Canvas.Left="1502.4695"
+                        Canvas.Top="317.41677"
+                        Width="9.3724"
+                        Height="37.97358"
+                        Background="{StaticResource BrushV}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0,0.329915357834785,0,0.329915357834785" />
+
+                    <Border
+                        Canvas.Left="1511.552"
+                        Canvas.Top="313.88"
+                        Width="8"
+                        Height="45"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource Brush3}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0.329915357834785,0.329915357834785,0.329915357834785">
+                        <Border
+                            x:Name="gv01"
+                            Width="4.3"
+                            d:IsLocked="True"
+                            Background="{StaticResource Brush3}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0.329915357834785,0" />
+                    </Border>
+                    <StackPanel
+                        Canvas.Left="1519.496"
+                        Canvas.Top="317.593"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Border
+                            Width="50.104"
+                            Height="37.56083"
+                            d:IsLocked="True"
+                            Background="{StaticResource BrushV}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785,0.329915357834785,0.329915357834785" />
+                        <Border
+                            Width="4.0672"
+                            Height="18.633"
+                            d:IsLocked="True"
+                            Background="{StaticResource BrushV}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785,0.329915357834785,0.329915357834785" />
+                        <Border
+                            Width="13.561993724002"
+                            Height="13.4986"
+                            d:IsLocked="True"
+                            Background="{StaticResource BrushV}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785,0.329915357834785,0.329915357834785" />
+                        <Border
+                            Width="5.423"
+                            Height="3.18412"
+                            d:IsLocked="True"
+                            Background="{StaticResource BrushV}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0,0.329915357834785,0.329915357834785,0.329915357834785" />
+                    </StackPanel>
+                    <Border
+                        Canvas.Left="1269.099"
+                        Canvas.Top="298.305"
+                        Width="17"
+                        Height="76"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource Brush3}"
+                        BorderBrush="#FF212830"
+                        BorderThickness="0.329915357834785,0.329915357834785,0.329915357834785,0.329915357834785">
+                        <Border
+                            x:Name="gv07"
+                            Width="8.8419"
+                            Height="75.8882"
+                            d:IsLocked="True"
+                            Background="{StaticResource Brush3}"
+                            BorderBrush="#FF212830"
+                            BorderThickness="0.329915357834785,0" />
+                    </Border>
+                    <TextBlock
+                        x:Name="txtCell01Name"
+                        Canvas.Left="1288.365"
+                        Canvas.Top="280.999"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#1" />
+                    <TextBlock
+                        x:Name="txtCell02Name"
+                        Canvas.Left="1287.033"
+                        Canvas.Top="376.999"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#2" />
+                    <TextBlock
+                        x:Name="txtCell03Name"
+                        Canvas.Left="1520.304"
+                        Canvas.Top="376.999"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#3" />
+                    <TextBlock
+                        x:Name="txtCell04Name"
+                        Canvas.Left="1451.632"
+                        Canvas.Top="212.222"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#4" />
+                    <TextBlock
+                        x:Name="txtCell05Name"
+                        Canvas.Left="1355.069"
+                        Canvas.Top="212.222"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#5" />
+                    <TextBlock
+                        x:Name="txtCell06Name"
+                        Canvas.Left="1520.304"
+                        Canvas.Top="280.999"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#6" />
+                    <TextBlock
+                        x:Name="txtCell07Name"
+                        Canvas.Left="1451.632"
+                        Canvas.Top="445.752"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#7" />
+                    <TextBlock
+                        x:Name="txtCell08Name"
+                        Canvas.Left="1355.069"
+                        Canvas.Top="445.752"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#8" />
+                    <TextBlock
+                        x:Name="txtCell09Name"
+                        Canvas.Left="1314.191"
+                        Canvas.Top="418.907"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#9" />
+                    <TextBlock
+                        x:Name="txtCell10Name"
+                        Canvas.Left="1489.935"
+                        Canvas.Top="417.834"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#10" />
+                    <TextBlock
+                        x:Name="txtCell11Name"
+                        Canvas.Left="1489.935"
+                        Canvas.Top="240.145"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#11" />
+                    <TextBlock
+                        x:Name="txtCell12Name"
+                        Canvas.Left="1310.672"
+                        Canvas.Top="239.88"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="#12" />
+                </Canvas>
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1341.37064499116"
+                    X2="1353.80820897838"
+                    Y1="245.531051594541"
+                    Y2="215.340874261111" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1369.31095461173"
+                    X2="1381.80746439984"
+                    Y1="257.1471940451"
+                    Y2="226.957016711669" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1395.8955108119"
+                    X2="1419.00226475972"
+                    Y1="282.030504269138"
+                    Y2="258.91614974823" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1374.49818508981"
+                    X2="1397.54599323674"
+                    Y1="260.626140261257"
+                    Y2="237.511785740349" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1298.87072255142"
+                    X2="1286.37421276332"
+                    Y1="427.438663066482"
+                    Y2="457.628840399912" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1270.87146712996"
+                    X2="1258.37495734185"
+                    Y1="415.822520615924"
+                    Y2="446.012697949354" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1265.68423665188"
+                    X2="1242.63642850495"
+                    Y1="412.343574399767"
+                    Y2="435.457928920674" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1244.28691092979"
+                    X2="1221.23910278286"
+                    Y1="390.939210391885"
+                    Y2="414.053564912793" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1199.78283125989"
+                    X2="1210.21623801694"
+                    Y1="372.718966649639"
+                    Y2="368.355542581916" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1209.03732199919"
+                    X2="1239.09968045171"
+                    Y1="395.243669269503"
+                    Y2="382.802014157484" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1239.51230105792"
+                    X2="1209.4499426054"
+                    Y1="289.401153032183"
+                    Y2="276.959497920163" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1210.21623801694"
+                    X2="1199.78283125989"
+                    Y1="304.614172079107"
+                    Y2="300.309713201489" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1188.93680389663"
+                    X2="1232.37985915056"
+                    Y1="304.614172079107"
+                    Y2="304.614172079107" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1188.93680389663"
+                    X2="1232.37985915056"
+                    Y1="368.355542581916"
+                    Y2="368.355542581916" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1298.87072255142"
+                    X2="1286.37421276332"
+                    Y1="245.531051594541"
+                    Y2="215.340874261111" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1270.87146712996"
+                    X2="1258.37495734185"
+                    Y1="257.1471940451"
+                    Y2="226.957016711669" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1265.68423665188"
+                    X2="1242.63642850495"
+                    Y1="260.626140261257"
+                    Y2="237.511785740349" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1244.28691092979"
+                    X2="1221.23910278286"
+                    Y1="282.030504269138"
+                    Y2="258.91614974823" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1341.37064499116"
+                    X2="1353.80820897838"
+                    Y1="427.438663066482"
+                    Y2="457.628840399912" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1369.31095461173"
+                    X2="1381.80746439984"
+                    Y1="415.822520615924"
+                    Y2="446.012697949354" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1395.8955108119"
+                    X2="1419.00226475972"
+                    Y1="390.939210391885"
+                    Y2="414.053564912793" />
+                <Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1374.49818508981"
+                    X2="1397.54599323674"
+                    Y1="412.343574399767"
+                    Y2="435.457928920674" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1464.9799894518"
+                    X2="1464.9799894518"
+                    Y1="195.646500766256"
+                    Y2="196.236152667299" />-->
+                <!--<Polygon
+                    Fill="{StaticResource BrushH}"
+                    Points="1455.48971550895,195.646500766256 1511.95979275897,195.646500766256 1511.95979275897,181.376924761001 1455.48971550895,181.376924761001"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1496.75177613005"
+                    X2="1496.75177613005"
+                    Y1="174.419032328687"
+                    Y2="171.765598773991" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1470.69773213787"
+                    X2="1470.69773213787"
+                    Y1="171.765598773991"
+                    Y2="174.419032328687" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1467.04309248286"
+                    X2="1469.1651413148"
+                    Y1="132.612712544698"
+                    Y2="129.546522659272" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1500.40641578506"
+                    X2="1496.75177613005"
+                    Y1="149.712617674962"
+                    Y2="153.722250602058" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1467.04309248286"
+                    X2="1470.69773213787"
+                    Y1="149.712617674962"
+                    Y2="153.722250602058" />-->
+                <!--<Line
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785"
+                    X1="1502.46951881612"
+                    X2="1502.46951881612"
+                    Y1="195.646500766256"
+                    Y2="196.236152667299" />-->
+                <!--<Polygon
+                    Points="1175.02559488723,298.304896737941 1188.93680389663,298.304896737941 1188.93680389663,374.664817923083 1175.02559488723,374.664817923083"
+                    Stroke="#FF212830"
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round"
+                    StrokeMiterLimit="1"
+                    StrokeStartLineCap="Round"
+                    StrokeThickness="0.329915357834785" />-->
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</UserControl>

@@ -34,7 +34,7 @@ namespace Test
 
         private void MainWindow_ContentRendered(object? sender, EventArgs e)
         {
-           
+
             if (v.IsLoaded && v.IsInitialized && this.IsLoaded && this.IsInitialized)
             {
                 v.IsRotating = true;
@@ -44,7 +44,7 @@ namespace Test
 
       
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)v.ActualWidth, (int)v.ActualHeight, 96, 96, PixelFormats.Default);
             //renderTargetBitmap.Render(v);
@@ -68,6 +68,13 @@ namespace Test
 
             //grid.InvalidateArrange();
             v.MainShutterStatus = !v.MainShutterStatus ?? false;
+            await Task.Delay(500);
+            v.GateValveStatus[0] =!v.GateValveStatus[0] ?? false;
+            await Task.Delay(500);
+            v.GateValveStatus[1] = !v.GateValveStatus[1] ?? false;
+            await Task.Delay(500);
+            v.GateValveStatus[2] = !v.GateValveStatus[2] ?? false;
+            await Task.Delay(500);
         }
     }
 }

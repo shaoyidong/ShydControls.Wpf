@@ -148,8 +148,7 @@ namespace ShydControls.Wpf
             foreach (var c in this.Text)
             {
                 if (!handledSybmol && (c == '-'))
-                {
-                    baseNumber = -1;
+                {                    
                     handledSybmol = true;
                 }
 
@@ -158,17 +157,19 @@ namespace ShydControls.Wpf
                     int digit = c - '0';
                     if (!handledDot)
                     {
+
                         number = (number * baseNumber) + digit;
                         baseNumber = 10;
                     }
                     else
                     {
-                        baseNumber = baseNumber / 10;
+                       
                         number += digit * baseNumber;
+                        baseNumber /= 10;
                     }
 
                     // 正负号必须位于最前面
-                    handledSybmol = true;
+                    //handledSybmol = true;
                 }
 
                 if (c == '.')
@@ -182,22 +183,42 @@ namespace ShydControls.Wpf
                     handledDot = true;
 
                     // 此时正负号不能起作用
-                    handledSybmol = true;
+                    //handledSybmol = true;
                     baseNumber = 0.1M;
                     precision++;
                 }
 
-                if ((number < this.MinValue) || (number > this.MaxValue))
+                if (!handledSybmol)
                 {
-                    this.Text = lastNumber.ToString(CultureInfo.InvariantCulture);
-                    this.SelectionStart = this.Text.Length;
-                    return;
+                    if ((number < this.MinValue) || (number > this.MaxValue))
+                    {
+                        this.Text = lastNumber.ToString(CultureInfo.InvariantCulture);
+                        this.SelectionStart = this.Text.Length;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (((0- number) < this.MinValue) || ((0- number) > this.MaxValue))
+                    {
+                        this.Text = (0- lastNumber).ToString(CultureInfo.InvariantCulture);
+                        this.SelectionStart = this.Text.Length;
+                        return;
+                    }
+
                 }
 
                 lastNumber = number;
             }
-
-            this.Text = number.ToString(CultureInfo.InvariantCulture);
+            if (!handledSybmol)
+            {
+                this.Text = number.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                this.Text = (0-number).ToString(CultureInfo.InvariantCulture);
+            }
+            
             this.SelectionStart = this.Text.Length;
         }
 
