@@ -1,0 +1,279 @@
+﻿<UserControl
+    x:Class="ShydControls.Wpf.Aperture.GlowRingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.Aperture"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="RootControl"
+    d:DesignHeight="200"
+    d:DesignWidth="200"
+    mc:Ignorable="d">
+    <Grid x:Name="MainGrid" Background="Transparent">
+        <!--  Main glow ring  -->
+        <Ellipse Width="{Binding ElementName=RootControl, Path=RingSize}" Height="{Binding ElementName=RootControl, Path=RingSize}">
+            <Ellipse.Stroke>
+                <LinearGradientBrush x:Name="RingGradient" StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#66FFFFFF" />
+                    <GradientStop Offset="0.5" Color="#CCFFFFFF" />
+                    <GradientStop Offset="1" Color="#66FFFFFF" />
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+            <Ellipse.StrokeThickness>3</Ellipse.StrokeThickness>
+            <Ellipse.Effect>
+                <DropShadowEffect
+                    BlurRadius="25"
+                    Opacity="1"
+                    ShadowDepth="0"
+                    Color="White" />
+            </Ellipse.Effect>
+            <Ellipse.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5" />
+            </Ellipse.RenderTransformOrigin>
+            <Ellipse.RenderTransform>
+                <RotateTransform x:Name="RingRotation" />
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="RingRotation"
+                                Storyboard.TargetProperty="Angle"
+                                From="0"
+                                To="360"
+                                Duration="0:0:4" />
+                            <!--  呼吸  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetProperty="Effect.BlurRadius"
+                                From="15"
+                                To="35"
+                                Duration="0:0:2" />
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.3"
+                                To="1"
+                                Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+        <!--  使用Effect实现的流光效果 - 亮度越高扩散阴影越大  -->
+        <Grid
+            x:Name="StreamGrid"
+            Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+            Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}">
+            <Grid.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5" />
+            </Grid.RenderTransformOrigin>
+            <Grid.RenderTransform>
+                <RotateTransform x:Name="StreamRotation" />
+            </Grid.RenderTransform>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamRotation"
+                                Storyboard.TargetProperty="Angle"
+                                From="0"
+                                To="360"
+                                Duration="0:0:1.5" />
+                            <!--  动态调整模糊半径，模拟亮度越高扩散越大  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamBlurEffect"
+                                Storyboard.TargetProperty="Radius"
+                                From="5"
+                                To="15"
+                                Duration="0:0:2" />
+                            <!--  动态调整发光强度  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamDropShadowEffect"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.5"
+                                To="0.8"
+                                Duration="0:0:1.5" />
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamDropShadowEffect"
+                                Storyboard.TargetProperty="BlurRadius"
+                                From="5"
+                                To="20"
+                                Duration="0:0:1.5" />
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="mainStream"
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0.3"
+                                Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <!--  主流光  -->
+            <Ellipse
+                x:Name="mainStream"
+                Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+                Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}">
+                <Ellipse.Stroke>
+                    <LinearGradientBrush x:Name="StreamGradient" StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0" Color="Transparent" />
+                        <GradientStop x:Name="StreamColor" Offset="0.4" Color="White" />
+                        <GradientStop Offset="0.6" Color="Transparent" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Ellipse.Stroke>
+                <Ellipse.StrokeThickness>8</Ellipse.StrokeThickness>
+                <!--  使用DropShadowEffect实现发光效果  -->
+                <Ellipse.Effect>
+                    <DropShadowEffect
+                        x:Name="StreamDropShadowEffect"
+                        BlurRadius="10"
+                        Opacity="0.7"
+                        ShadowDepth="0"
+                        Color="White" />
+                </Ellipse.Effect>
+            </Ellipse>
+            <!--  使用BlurEffect增强光晕感  -->
+            <Grid.Effect>
+                <BlurEffect
+                    x:Name="StreamBlurEffect"
+                    Radius="10"
+                    RenderingBias="Performance" />
+            </Grid.Effect>
+        </Grid>
+        <!--  使用Effect实现的第二个流光效果  -->
+        <Grid
+            x:Name="StreamGrid2"
+            Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+            Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}">
+            <Grid.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5" />
+            </Grid.RenderTransformOrigin>
+            <Grid.RenderTransform>
+                <RotateTransform x:Name="StreamRotation2" />
+            </Grid.RenderTransform>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamRotation2"
+                                Storyboard.TargetProperty="Angle"
+                                From="0"
+                                To="-360"
+                                Duration="0:0:2" />
+                            <!--  动态调整模糊半径，模拟亮度越高扩散越大  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamBlurEffect2"
+                                Storyboard.TargetProperty="Radius"
+                                From="3"
+                                To="12"
+                                Duration="0:0:2.5" />
+                            <!--  动态调整发光强度  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamDropShadowEffect2"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.5"
+                                To="0.8"
+                                Duration="0:0:1.8" />
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="StreamDropShadowEffect"
+                                Storyboard.TargetProperty="BlurRadius"
+                                From="5"
+                                To="20"
+                                Duration="0:0:1.8" />
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetName="mainStream2"
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0.3"
+                                Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <!--  主流光  -->
+            <Ellipse
+                x:Name="mainStream2"
+                Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+                Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}">
+                <Ellipse.Stroke>
+                    <LinearGradientBrush x:Name="StreamGradient2" StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Offset="0" Color="Transparent" />
+                        <GradientStop x:Name="StreamColor2" Offset="0.4" Color="#66FFFFFF" />
+                        <GradientStop Offset="0.6" Color="Transparent" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Ellipse.Stroke>
+                <Ellipse.StrokeThickness>8</Ellipse.StrokeThickness>
+                <Ellipse.Opacity>0.7</Ellipse.Opacity>
+                <!--  使用DropShadowEffect实现发光效果  -->
+                <Ellipse.Effect>
+                    <DropShadowEffect
+                        x:Name="StreamDropShadowEffect2"
+                        BlurRadius="8"
+                        Opacity="0.7"
+                        ShadowDepth="0"
+                        Color="White" />
+                </Ellipse.Effect>
+            </Ellipse>
+            <!--  使用BlurEffect增强光晕感  -->
+            <Grid.Effect>
+                <BlurEffect
+                    x:Name="StreamBlurEffect2"
+                    Radius="10"
+                    RenderingBias="Performance" />
+            </Grid.Effect>
+        </Grid>
+        <!--  Inner glow  -->
+        <Ellipse Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=-6}" Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=-6}">
+            <Ellipse.Fill>
+                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                    <GradientStop Offset="0.8" Color="Transparent" />
+                    <GradientStop Offset="1" Color="#66FFFFFF" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!--  呼吸  -->
+                            <DoubleAnimation
+                                AutoReverse="True"
+                                RepeatBehavior="Forever"
+                                Storyboard.TargetProperty="Opacity"
+                                From="0.3"
+                                To="1"
+                                Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+    </Grid>
+
+</UserControl>
