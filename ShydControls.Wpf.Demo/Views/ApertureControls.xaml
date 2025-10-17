@@ -29,6 +29,7 @@
                     Width="170"
                     Height="170"
                     ProgressValue="{Binding ElementName=slider, Path=Value}"
+                    RingBaseColor="#FF00FF"
                     RingSize="150" />
                 <StackPanel
                     Margin="0,10,0,0"

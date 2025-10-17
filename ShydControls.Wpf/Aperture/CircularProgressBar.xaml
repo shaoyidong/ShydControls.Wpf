@@ -14,18 +14,18 @@
         <Ellipse Width="{Binding ElementName=RootControl, Path=RingSize}" Height="{Binding ElementName=RootControl, Path=RingSize}">
             <Ellipse.Stroke>
                 <LinearGradientBrush x:Name="RingGradient" StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Offset="0" Color="#66FFFFFF" />
-                    <GradientStop Offset="0.5" Color="#CCFFFFFF" />
-                    <GradientStop Offset="1" Color="#66FFFFFF" />
+                    <GradientStop Offset="0" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=66}" />
+                    <GradientStop Offset="0.5" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=CC}" />
+                    <GradientStop Offset="1" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=66}" />
                 </LinearGradientBrush>
             </Ellipse.Stroke>
             <Ellipse.StrokeThickness>3</Ellipse.StrokeThickness>
             <Ellipse.Effect>
                 <DropShadowEffect
-                    BlurRadius="25"
-                    Opacity="1"
-                    ShadowDepth="0"
-                    Color="White" />
+                 BlurRadius="25"
+                 Opacity="1"
+                 ShadowDepth="0"
+                 Color="{Binding ElementName=RootControl, Path=RingBaseColor}" />
             </Ellipse.Effect>
             <Ellipse.RenderTransformOrigin>
                 <Point X="0.5" Y="0.5" />
@@ -38,27 +38,27 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="RingRotation"
-                                Storyboard.TargetProperty="Angle"
-                                From="0"
-                                To="360"
-                                Duration="0:0:4" />
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="RingRotation"
+                             Storyboard.TargetProperty="Angle"
+                             From="0"
+                             To="360"
+                             Duration="0:0:4" />
                             <!--  呼吸  -->
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetProperty="Effect.BlurRadius"
-                                From="15"
-                                To="35"
-                                Duration="0:0:2" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetProperty="Effect.BlurRadius"
+                             From="15"
+                             To="35"
+                             Duration="0:0:2" />
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetProperty="Opacity"
-                                From="0.3"
-                                To="1"
-                                Duration="0:0:2" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.3"
+                             To="1"
+                             Duration="0:0:2" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -71,87 +71,87 @@
                         <Storyboard>
                             <!--  动态调整模糊半径，模拟亮度越高扩散越大  -->
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="StreamBlurEffect"
-                                Storyboard.TargetProperty="Radius"
-                                From="5"
-                                To="15"
-                                Duration="0:0:2" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="StreamBlurEffect"
+                             Storyboard.TargetProperty="Radius"
+                             From="5"
+                             To="15"
+                             Duration="0:0:2" />
                             <!--  动态调整发光强度  -->
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="ProgressDropShadowEffect"
-                                Storyboard.TargetProperty="Opacity"
-                                From="0.5"
-                                To="0.8"
-                                Duration="0:0:1.5" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="ProgressDropShadowEffect"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.5"
+                             To="0.8"
+                             Duration="0:0:1.5" />
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="ProgressDropShadowEffect"
-                                Storyboard.TargetProperty="BlurRadius"
-                                From="5"
-                                To="20"
-                                Duration="0:0:1.5" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="ProgressDropShadowEffect"
+                             Storyboard.TargetProperty="BlurRadius"
+                             From="5"
+                             To="20"
+                             Duration="0:0:1.5" />
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="ProgressPath"
-                                Storyboard.TargetProperty="Opacity"
-                                From="0.8"
-                                To="0.7"
-                                Duration="0:0:2" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="ProgressPath"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.8"
+                             To="0.7"
+                             Duration="0:0:2" />
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetName="ProgressPathGradient"
-                                Storyboard.TargetProperty="Offset"
-                                From="0.2"
-                                To="0.8"
-                                Duration="0:0:1.8" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetName="ProgressPathGradient"
+                             Storyboard.TargetProperty="Offset"
+                             From="0.2"
+                             To="0.8"
+                             Duration="0:0:1.8" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
             </Grid.Triggers>
             <Path
-                x:Name="ProgressPath"
-                Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
-                Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
-                RenderTransformOrigin="0.5,0.5"
-                StrokeThickness="8">
+             x:Name="ProgressPath"
+             Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+             Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=+10}"
+             RenderTransformOrigin="0.5,0.5"
+             StrokeThickness="8">
                 <Path.RenderTransform>
                     <TranslateTransform X="2" Y="2" />
                 </Path.RenderTransform>
                 <Path.Stroke>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Offset="0" Color="#33FFFFFF" />
-                        <GradientStop x:Name="ProgressPathGradient" Offset="0.5" Color="#EEFFFFFF" />
-                        <GradientStop Offset="1" Color="#33FFFFFF" />
+                        <GradientStop Offset="0" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=33}" />
+                        <GradientStop x:Name="ProgressPathGradient" Offset="0.5" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=EE}" />
+                        <GradientStop Offset="1" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=33}" />
                     </LinearGradientBrush>
                 </Path.Stroke>
                 <Path.Effect>
                     <DropShadowEffect
-                        x:Name="ProgressDropShadowEffect"
-                        BlurRadius="10"
-                        Opacity="0.7"
-                        ShadowDepth="0"
-                        Color="White" />
+                     x:Name="ProgressDropShadowEffect"
+                     BlurRadius="10"
+                     Opacity="0.7"
+                     ShadowDepth="0"
+                     Color="{Binding ElementName=RootControl, Path=RingBaseColor}" />
                 </Path.Effect>
             </Path>
             <Grid.Effect>
                 <BlurEffect
-                    x:Name="StreamBlurEffect"
-                    Radius="10"
-                    RenderingBias="Performance" />
+                 x:Name="StreamBlurEffect"
+                 Radius="10"
+                 RenderingBias="Performance" />
             </Grid.Effect>
         </Grid>
         <Ellipse Width="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=-6}" Height="{Binding ElementName=RootControl, Path=RingSize, Converter={StaticResource SizeConverter}, ConverterParameter=-6}">
             <Ellipse.Fill>
                 <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
                     <GradientStop Offset="0.8" Color="Transparent" />
-                    <GradientStop Offset="1" Color="#66FFFFFF" />
+                    <GradientStop Offset="1" Color="{Binding ElementName=RootControl, Path=RingBaseColor, Converter={StaticResource ColorWithOpacityConverter}, ConverterParameter=66}" />
                 </RadialGradientBrush>
             </Ellipse.Fill>
             <Ellipse.Triggers>
@@ -159,12 +159,12 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation
-                                AutoReverse="True"
-                                RepeatBehavior="Forever"
-                                Storyboard.TargetProperty="Opacity"
-                                From="0.3"
-                                To="0.6"
-                                Duration="0:0:2" />
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.3"
+                             To="0.6"
+                             Duration="0:0:2" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

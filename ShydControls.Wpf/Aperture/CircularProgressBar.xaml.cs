@@ -30,6 +30,11 @@ namespace ShydControls.Wpf.Aperture
             DependencyProperty.Register("ProgressValue", typeof(double), typeof(CircularProgressBar),
             new FrameworkPropertyMetadata(65.0, FrameworkPropertyMetadataOptions.AffectsRender, OnProgressValueChanged));
 
+        // 定义RingBaseColor依赖属性
+        public static readonly DependencyProperty RingBaseColorProperty =
+            DependencyProperty.Register("RingBaseColor", typeof(Color), typeof(CircularProgressBar),
+            new FrameworkPropertyMetadata(Colors.White, FrameworkPropertyMetadataOptions.AffectsRender, OnRingBaseColorChanged));
+
         // RingSize属性的getter和setter
         public double RingSize
         {
@@ -42,6 +47,13 @@ namespace ShydControls.Wpf.Aperture
         {
             get { return (double)GetValue(ProgressValueProperty); }
             set { SetValue(ProgressValueProperty, Math.Max(0, Math.Min(100, value))); }
+        }
+
+        // RingBaseColor属性的getter和setter
+        public Color RingBaseColor
+        {
+            get { return (Color)GetValue(RingBaseColorProperty); }
+            set { SetValue(RingBaseColorProperty, value); }
         }
 
         // 进度值变化的回调函数
@@ -60,6 +72,18 @@ namespace ShydControls.Wpf.Aperture
                 control.ProgressPath.Data = geometry;
             }
         }
+
+        // 基础颜色变化的回调函数
+        private static void OnRingBaseColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as CircularProgressBar;
+            if (control != null)
+            {
+                // 强制重绘控件以应用新颜色
+                control.InvalidateVisual();
+            }
+        }
+
         // 计算进度路径
         private string GetProgressPath()
         {
@@ -97,6 +121,7 @@ namespace ShydControls.Wpf.Aperture
         {
             // 注册转换器
             this.Resources.Add("SizeConverter", new Converters.SizeConverter());
+            this.Resources.Add("ColorWithOpacityConverter", new Converters.ColorWithOpacityConverter());
             InitializeComponent();
         }
     }
