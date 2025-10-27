@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="ShydControls.Wpf.Charts.TemperatureFanCurveControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.Charts"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="400"
+    d:DesignWidth="600"
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d">
+    <Grid>
+        <!--  主画布用于绘制图表  -->
+        <Canvas
+            Name="ChartCanvas"
+            Margin="50,30,30,50"
+            Background="#F5F5F5"
+            MouseDown="ChartCanvas_MouseDown"
+            MouseLeave="ChartCanvas_MouseLeave"
+            MouseMove="ChartCanvas_MouseMove"
+            MouseUp="ChartCanvas_MouseUp">
+            <!--  网格线将在代码中绘制  -->
+        </Canvas>
+
+        <!--  X轴和Y轴标签  -->
+        <TextBlock
+            Margin="0,0,0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            FontSize="14"
+            FontWeight="Bold"
+            Text="温度 (°C)" />
+        <TextBlock
+            Margin="10,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            FontWeight="Bold"
+            Text="风扇转速 (%)">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="-90" />
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+    </Grid>
+</UserControl>
