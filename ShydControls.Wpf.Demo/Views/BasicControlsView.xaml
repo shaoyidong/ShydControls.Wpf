@@ -1,0 +1,163 @@
+<UserControl
+    x:Class="ShydControls.Wpf.Demo.Views.BasicControlsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ShydControls.Wpf;assembly=ShydControls.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.Demo.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="800"
+    mc:Ignorable="d">   
+    <Grid Background="#1E1E1E" TextElement.Foreground="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  标题  -->
+        <Border
+            Margin="10"
+            Padding="10"
+            Background="#252526"
+            CornerRadius="5">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#CCCCCC">
+                基础控件
+            </TextBlock>
+        </Border>
+
+        <!--  控件展示区域  -->
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="10"
+            VerticalScrollBarVisibility="Auto">
+            <WrapPanel>
+                <!--  NumbericTextBox  -->
+                <Border
+                    Width="250"
+                    Margin="10"
+                    Padding="15"
+                    Background="#252526"
+                    CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="14"
+                            FontWeight="Bold">
+                            NumbericTextBox
+                        </TextBlock>
+                        <TextBlock
+                            Margin="0,0,0,5"
+                            FontSize="12"
+                            Foreground="#999999">
+                            可输入数字的文本框
+                        </TextBlock>
+                        <controls:NumbericTextBox
+                            Width="200"
+                            Margin="0,5,0,0"
+                            HorizontalContentAlignment="Right"
+                            MaxValue="100"
+                            MinValue="0"
+                            Precision="2"
+                            Text="50" />
+                    </StackPanel>
+                </Border>
+
+                <!--  ProgressRing  -->
+                <Border
+                    Width="250"
+                    Margin="10"
+                    Padding="15"
+                    Background="#252526"
+                    CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="14"
+                            FontWeight="Bold">
+                            ProgressRing
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                FontSize="12"
+                                Foreground="#999999">
+                                进度环
+                            </TextBlock>
+                            <CheckBox
+                                x:Name="chkProgressRingIsActive"
+                                Margin="10,0"
+                                Content="IsActive"
+                                Foreground="White"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkProgressRingIsLarge"
+                                Margin="10,0"
+                                Content="IsLarge"
+                                Foreground="White"
+                                IsChecked="True" />
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Center">
+
+                            <controls:ProgressRing
+                                Margin="10"
+                                Foreground="#0078D7"
+                                IsActive="{Binding ElementName=chkProgressRingIsActive, Path=IsChecked}"
+                                IsLarge="{Binding ElementName=chkProgressRingIsLarge, Path=IsChecked}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!--  CircularProgressBar  -->
+                <Border
+                    Width="250"
+                    Margin="10"
+                    Padding="15"
+                    Background="#252526"
+                    CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="14"
+                            FontWeight="Bold">
+                            CircularProgressBar
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                FontSize="12"
+                                Foreground="#999999">
+                                环形进度条
+                            </TextBlock>
+                            <Slider
+                                x:Name="circularProgressSlider"
+                                Width="150"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="65" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+
+                            <controls:CircularProgressBar
+                                Width="100"
+                                Height="100"
+                                BackColor="#3C3C3C"
+                                ForeColor="#0078D7"
+                                Value="{Binding ElementName=circularProgressSlider, Path=Value}" />
+                            <TextBlock
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Center"
+                                Text="{Binding ElementName=circularProgressSlider, Path=Value, StringFormat={}{0:F0}%}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

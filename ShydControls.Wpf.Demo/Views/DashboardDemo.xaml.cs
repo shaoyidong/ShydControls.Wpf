@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ShydControls.Wpf.Demo.Views
 {
     /// <summary>
-    /// ConventionalControls.xaml 的交互逻辑
+    /// DashboardDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ConventionalControls : UserControl
+    public partial class DashboardDemo : UserControl
     {
-        public ConventionalControls()
+        public DashboardDemo()
         {
             InitializeComponent();
         }

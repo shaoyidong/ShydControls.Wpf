@@ -12,4 +12,8 @@
     <ProjectReference Include="..\ShydControls.Wpf\ShydControls.Wpf.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,208 @@
+<UserControl
+    x:Class="ShydControls.Wpf.Demo.Views.ChartsControlsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:charts="clr-namespace:ShydControls.Wpf.Charts;assembly=ShydControls.Wpf"
+    xmlns:controls="clr-namespace:ShydControls.Wpf;assembly=ShydControls.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShydControls.Wpf.Demo.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    d:DesignHeight="700"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="#1E1E1E" TextElement.Foreground="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  标题  -->
+        <Border
+            Margin="10"
+            Padding="10"
+            Background="#252526"
+            CornerRadius="5">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#CCCCCC">
+                图表控件
+            </TextBlock>
+        </Border>
+
+        <!--  控件展示区域  -->
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="10"
+            VerticalScrollBarVisibility="Auto">
+            <WrapPanel>
+                <!--  PentagonChart  -->
+                <Border
+                    Margin="10"
+                    Padding="15"
+                    Background="#252526"
+                    CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="14"
+                            FontWeight="Bold">
+                            五维图表控件
+                        </TextBlock>
+                        <TextBlock
+                            Margin="0,0,0,20"
+                            FontSize="12"
+                            Foreground="#999999">
+                            展示五个维度的数据，支持动画效果
+                        </TextBlock>
+                        <Grid>
+                            <charts:PentagonChart
+                                Width="150"
+                                Height="150"
+                                AnimationEnabled="True"
+                                FiveValue="{Binding ElementName=numFive, Path=Text}"
+                                FourValue="{Binding ElementName=numFour, Path=Text}"
+                                MaxValue="100"
+                                OneValue="{Binding ElementName=numOne, Path=Text}"
+                                ThreeValue="{Binding ElementName=numThree, Path=Text}"
+                                TwoValue="{Binding ElementName=numTwo, Path=Text}" />
+                            <controls:NumbericTextBox
+                                x:Name="numOne"
+                                Width="30"
+                                Margin="0,-15,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                MaxValue="100"
+                                MinValue="0"
+                                Precision="0"
+                                Text="70" />
+                            <controls:NumbericTextBox
+                                x:Name="numTwo"
+                                Width="30"
+                                Margin="0,-45,-5,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                MaxValue="100"
+                                MinValue="0"
+                                Precision="0"
+                                Text="60" />
+                            <controls:NumbericTextBox
+                                x:Name="numThree"
+                                Width="30"
+                                Margin="0,0,20,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                MaxValue="100"
+                                MinValue="0"
+                                Precision="0"
+                                Text="50" />
+                            <controls:NumbericTextBox
+                                x:Name="numFour"
+                                Width="30"
+                                Margin="20,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                MaxValue="100"
+                                MinValue="0"
+                                Precision="0"
+                                Text="40" />
+                            <controls:NumbericTextBox
+                                x:Name="numFive"
+                                Width="30"
+                                Margin="-5,-45,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                MaxValue="100"
+                                MinValue="0"
+                                Precision="0"
+                                Text="80" />
+
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <!--  TemperatureFanCurveControl  -->
+                <Border
+                    Width="500"
+                    Margin="10"
+                    Padding="15"
+                    Background="#252526"
+                    CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            FontSize="14"
+                            FontWeight="Bold">
+                            温度-风扇转速曲线控件
+                        </TextBlock>
+                        <TextBlock
+                            Margin="0,0,0,0"
+                            FontSize="12"
+                            Foreground="#999999">
+                            展示温度与风扇转速的关系曲线
+                        </TextBlock>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <Button
+                                    Margin="3"
+                                    Padding="3"
+                                    Background="White"
+                                    Click="btnAddPoint_Click"
+                                    Content="增加点" />
+                                <Button
+                                    Margin="3"
+                                    Padding="3"
+                                    Background="White"
+                                    Click="btnDelPoint_Click"
+                                    Content="删除点" />
+                            </WrapPanel>
+                            <charts:TemperatureFanCurveControl
+                                x:Name="temperatureFanCurveControl"
+                                Grid.Row="1"
+                                Width="450"
+                                Height="300" />
+                            <ItemsControl Grid.Row="2">
+                                <ItemsControl.Resources>
+                                    <CollectionViewSource
+                                        xmlns:l="clr-namespace:System;assembly=mscorlib"
+                                        x:Key="SortedPoints"
+                                        IsLiveSortingRequested="True"
+                                        Source="{Binding ElementName=temperatureFanCurveControl, Path=CurvePoints}">
+                                        <CollectionViewSource.LiveSortingProperties>
+                                            <l:String>Temperature</l:String>
+                                        </CollectionViewSource.LiveSortingProperties>
+                                        <CollectionViewSource.SortDescriptions>
+                                            <scm:SortDescription Direction="Ascending" PropertyName="Temperature" />
+                                        </CollectionViewSource.SortDescriptions>
+                                    </CollectionViewSource>
+                                </ItemsControl.Resources>
+                                <ItemsControl.ItemsSource>
+                                    <Binding Source="{StaticResource SortedPoints}" />
+                                </ItemsControl.ItemsSource>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontWeight="Bold" Text="温度: " />
+                                            <TextBlock Width="80" Text="{Binding Temperature, StringFormat={}{0:N1}°C}" />
+                                            <TextBlock FontWeight="Bold" Text=" 风扇速度: " />
+                                            <TextBlock Text="{Binding FanSpeed, StringFormat={}{0:N1}%}" />
+                                            <TextBlock
+                                                Foreground="Red"
+                                                Text=" (选中)"
+                                                Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

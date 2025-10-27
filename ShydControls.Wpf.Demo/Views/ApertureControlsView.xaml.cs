@@ -18,9 +18,9 @@ namespace ShydControls.Wpf.Demo.Views
     /// <summary>
     /// ApertureControls.xaml 的交互逻辑
     /// </summary>
-    public partial class ApertureControls : UserControl
+    public partial class ApertureControlsView : UserControl
     {
-        public ApertureControls()
+        public ApertureControlsView()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿using ShydControls.Wpf.Demo.Views;
+using ShydControls.Wpf.Demo.Views;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,21 +20,38 @@ namespace ShydControls.Wpf.Demo
         public MainWindow()
         {
             InitializeComponent();
-        }       
-
-        private void ConventionalBtn_Click(object sender, RoutedEventArgs e)
+            // 默认显示基础控件页面
+            contentControl.Content = new BasicControlsView();
+        }
+        
+        private void btnBasic_Click(object sender, RoutedEventArgs e)
         {
-            contentControl.Content = new ConventionalControls();
+            contentControl.Content = new BasicControlsView();
         }
 
-        private void ApertureBtn_Click(object sender, RoutedEventArgs e)
+        private void btnAperture_Click(object sender, RoutedEventArgs e)
         {
-            contentControl.Content = new ApertureControls();
+            contentControl.Content = new ApertureControlsView();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-            ConventionalBtn_Click(this, null);
+            contentControl.Content = new DashboardControlsView();
+        }
+
+        private void btnIndustrial_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new IndustrialComponentsView();
+        }
+
+        private void btnOther_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new OtherControlsView();
+        }
+
+        private void btnCharts_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ChartsControlsView();
         }
     }
 }
