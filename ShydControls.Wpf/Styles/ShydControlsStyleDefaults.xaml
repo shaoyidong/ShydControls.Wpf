@@ -1,3 +1,11 @@
-﻿<ResourceDictionary x:Class="ShydControls.Wpf.Styles.ShydControlsStyleDefaults" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:ShydControls.Wpf.Styles" xmlns:shydCtrs="clr-namespace:ShydControls.Wpf">
+﻿<ResourceDictionary
+    x:Class="ShydControls.Wpf.Styles.ShydControlsStyleDefaults"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ShydControls.Wpf.Styles"
+    xmlns:shydCtrs="clr-namespace:ShydControls.Wpf">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BaseResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="{x:Type shydCtrs:NumbericTextBox}" />
 </ResourceDictionary>
