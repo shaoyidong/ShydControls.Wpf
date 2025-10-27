@@ -23,20 +23,8 @@ namespace ShydControls.Wpf.IndustrialComponents
         public Pipeline()
         {
             InitializeComponent();
-        }
-        private int _direction = 0;
-        /// <summary>
-        /// 液体流向，接受0和1两个值
-        /// </summary>
-        public int Direction
-        {
-            get { return _direction; }
-            set
-            {
-                _direction = value;
-
-                VisualStateManager.GoToState(this, value == 0 ? "WEFlowState" : "EWFlowState", false);
-            }
+            // Ensure the initial state is set based on the default Direction value
+            OnDirectionProperty(this, new DependencyPropertyChangedEventArgs(DirectionProperty, null, Direction));
         }
 
         public Brush LiquidColor
@@ -56,6 +44,21 @@ namespace ShydControls.Wpf.IndustrialComponents
             DependencyProperty.Register("CapRadius", typeof(int), typeof(Pipeline), new PropertyMetadata(5));
 
 
+        public int Direction
+        {
+            get { return (int)GetValue(DirectionProperty); }
+            set { SetValue(DirectionProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Direction.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DirectionProperty =
+            DependencyProperty.Register("Direction", typeof(int), typeof(Pipeline), new PropertyMetadata(0, new PropertyChangedCallback(OnDirectionProperty)));
+
+        private static void OnDirectionProperty(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            VisualStateManager.GoToState(d as Pipeline, (int)e.NewValue == 0 ? "WEFlowState" : "EWFlowState", false);
+        }
+
         public bool IsRunning
         {
             get { return (bool)GetValue(IsRunningProperty); }
@@ -68,7 +71,5 @@ namespace ShydControls.Wpf.IndustrialComponents
         {
             VisualStateManager.GoToState(d as Pipeline, (bool)e.NewValue ? "RunState" : "StopState", false);
         }
-
-
     }
 }

@@ -28,7 +28,7 @@ namespace ShydControls.Wpf.IndustrialComponents
                     {
                         foreach (var item in parent.Children)
                         {
-                            if (item is ComponentBase)
+                            if (item is ComponentBase && item != this)
                                 (item as ComponentBase).IsSelected = false;
                         }
                     }
