@@ -1,6 +1,31 @@
-# ShydControls.Wpf
+![光圈](https://github.com/user-attachments/assets/84311e38-6ee7-418f-9690-40209dc8f41d)# ShydControls.Wpf
 
 WPF控件库，包含丰富的UI组件，为WPF应用程序提供现代化的界面元素。
+
+## 控件预览
+
+### 基础控件
+
+![基础控件](https://github.com/shaoyidong/ShydControls.Wpf/Images/基础控件.gif)
+
+### 光圈
+
+![光圈](https://github.com/shaoyidong/ShydControls.Wpf/Images/光圈.gif)
+
+### Dashboards 控件
+
+![仪表盘1](https://github.com/shaoyidong/ShydControls.Wpf/Images/仪表盘1.png)
+![仪表盘2](https://github.com/shaoyidong/ShydControls.Wpf/Images/仪表盘2.png)
+![组合仪表盘](https://github.com/shaoyidong/ShydControls.Wpf/Images/组合仪表盘.png)
+
+### 图表控件
+
+![图表](https://github.com/shaoyidong/ShydControls.Wpf/Images/图表.gif)
+
+### 工业组件
+
+![工业](https://github.com/shaoyidong/ShydControls.Wpf/Images/工业.gif)
+
 
 ## 功能特点
 
