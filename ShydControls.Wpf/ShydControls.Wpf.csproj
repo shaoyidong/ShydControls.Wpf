@@ -6,9 +6,18 @@
 	 <LangVersion>latest</LangVersion>
 	 <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	 <Authors>Shyd</Authors>
-	 <Version>1.1.1</Version>
+	 <Version>2.0.0</Version>
+	 <PackageId>ShydControls.Wpf</PackageId>
+	 <Description>WPF控件库</Description>
+	 <PackageTags>WPF;Controls;Chart;Aperture;Dashboard;Style;IndustrialComponets</PackageTags>
+	 <PackageProjectUrl></PackageProjectUrl>
+	 <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	 <RootNamespace>ShydControls.Wpf</RootNamespace>
+	 <AssemblyName>ShydControls.Wpf</AssemblyName>
+	 <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
     <Page Remove="Generic - 副本.xaml" />
   </ItemGroup>
   <ItemGroup>
