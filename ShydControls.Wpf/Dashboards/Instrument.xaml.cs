@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShydControls.Wpf
+namespace ShydControls.Wpf.Dashboards
 {
     /// <summary>
     /// Instrument.xaml 的交互逻辑

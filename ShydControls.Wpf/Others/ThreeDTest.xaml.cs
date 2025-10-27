@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShydControls.Wpf
+namespace ShydControls.Wpf.Others
 {
     /// <summary>
-    /// SkeletonScreen.xaml 的交互逻辑
+    /// _3dTest.xaml 的交互逻辑
     /// </summary>
-    public partial class SkeletonScreen : UserControl
+    public partial class ThreeDTest : UserControl
     {
-        public SkeletonScreen()
+        public ThreeDTest()
         {
             InitializeComponent();
         }
