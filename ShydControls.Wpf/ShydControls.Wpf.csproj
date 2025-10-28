@@ -10,7 +10,7 @@
 	 <PackageId>ShydControls.Wpf</PackageId>
 	 <Description>WPF控件库</Description>
 	 <PackageTags>WPF;Controls;Chart;Aperture;Dashboard;Style;IndustrialComponets</PackageTags>
-	 <PackageProjectUrl></PackageProjectUrl>
+	 <PackageProjectUrl>https://github.com/shaoyidong/ShydControls.Wpf</PackageProjectUrl>
 	 <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	 <RootNamespace>ShydControls.Wpf</RootNamespace>
 	 <AssemblyName>ShydControls.Wpf</AssemblyName>
