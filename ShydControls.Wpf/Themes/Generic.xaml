@@ -1,6 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dashboards="clr-namespace:ShydControls.Wpf.Dashboards"
     xmlns:local="clr-namespace:ShydControls.Wpf">
     <Style TargetType="local:ProgressRing">
         <Setter Property="Foreground" Value="Black" />
@@ -369,4 +370,24 @@
         <Setter Property="Width" Value="60" />
     </Style>
 
+    <Style TargetType="{x:Type dashboards:ViceDashboard}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5 1" EndPoint="0.5 0">
+                    <GradientStop Offset="0" Color="#000060ff" />
+                    <GradientStop Offset="0.38" Color="#0060ff" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dashboards:ViceDashboard}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

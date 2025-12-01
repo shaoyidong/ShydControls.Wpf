@@ -17,10 +17,24 @@
 	 <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Fonts\DingTalk JinBuTi.ttf" />
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\542654.png" />
+    <None Remove="Assets\Images\542654265.png" />
+    <None Remove="Assets\Images\5625426.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
     <Page Remove="Generic - 副本.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\DingTalk JinBuTi.ttf" />
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Images\542654.png" />
+    <Resource Include="Assets\Images\542654265.png" />
+    <Resource Include="Assets\Images\5625426.png" />
   </ItemGroup>
 </Project>
