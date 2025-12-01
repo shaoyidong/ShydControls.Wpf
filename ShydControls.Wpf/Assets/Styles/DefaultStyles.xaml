@@ -31,6 +31,7 @@
             <Style BasedOn="{StaticResource SimpleSlider}" TargetType="{x:Type Slider}" />
             <Style BasedOn="{StaticResource SimpleTreeView}" TargetType="{x:Type TreeView}" />
             <Style BasedOn="{StaticResource SimpleTreeViewItem}" TargetType="{x:Type TreeViewItem}" />
+            <Style BasedOn="{StaticResource SimplePasswordBox}" TargetType="{x:Type PasswordBox}" />
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

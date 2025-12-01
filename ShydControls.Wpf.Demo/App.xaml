@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ShydControls.Wpf;component/Styles/DefaultStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ShydControls.Wpf;component/Assets/Styles/DefaultStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
