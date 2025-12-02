@@ -31,7 +31,7 @@ namespace ShydControls.Wpf.Demo.Views
             double midTemp = 50;
             double midSpeed = 50;
 
-            temperatureFanCurveControl.CurvePoints.Add(new Charts.TemperatureFanCurveControl.CurvePoint
+            temperatureFanCurveControl.CurvePoints.Add(new Charts.TemperaturePWMCurveControl.CurvePoint
             {
                 Temperature = midTemp,
                 FanSpeed = midSpeed

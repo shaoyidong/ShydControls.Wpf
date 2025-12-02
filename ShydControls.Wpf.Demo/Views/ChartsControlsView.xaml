@@ -161,7 +161,7 @@
                                     Click="btnDelPoint_Click"
                                     Content="删除点" />
                             </WrapPanel>
-                            <charts:TemperatureFanCurveControl
+                            <charts:TemperaturePWMCurveControl
                                 x:Name="temperatureFanCurveControl"
                                 Grid.Row="1"
                                 Width="450"
